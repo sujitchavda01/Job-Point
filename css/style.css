@@ -1,0 +1,734 @@
+:root {
+
+    /* --job-seeker-color: #436fc7;
+    --employer-color: #4fa671;
+    --login-color: #ed7f38; */
+
+    --job-seeker-color: #0059b8;
+    --employer-color: #228d3b;
+    --login-color: #e25125;
+
+
+    --button-text-color: #ffffff;
+    --button-dark-color: #000000;
+    --dark-version-color:#222222 ;
+    --text-gray-color:#7a7a7a;
+    --background-color:#f4f4f4;
+    --darkgray-color:#f5f3f3fa;
+}
+
+.modal-content .btn {
+    background-color: var(--job-seeker-color);
+    color: var(--button-text-color);
+    font-weight: bold;
+}
+#myTab .nav-link.active {
+    color: #228d3b;
+  }
+
+.heronavbar {
+    height: 90px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 0 4vh;
+    font-weight: bold;
+}
+/* Sidebar Styling */
+.sidebar {
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: var(--job-seeker-color);
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    color: var(--job-seeker-color);
+    font-weight: bold;
+    transform: translateX(5px);
+}
+
+/* Responsive Sidebar */
+/* Sidebar responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .sidebar h5 {
+        font-size: 1rem;
+    }
+
+    .sidebar ul {
+        padding: 0;
+        margin: 0;
+        list-style: none; /* Remove bullets */
+    }
+
+    .sidebar ul li {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        padding: 5px 0;
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+/* Ensure full-width stacking for smaller screens */
+@media (max-width: 576px) {
+    .container {
+        padding: 0 15px; /* Adjust container padding for smaller screens */
+    }
+
+    .col-md-3 {
+        width: 100%; /* Stack sidebar */
+        margin-bottom: 20px;
+    }
+
+    .sidebar {
+        border: none;
+        box-shadow: none;
+        width: 100%; /* Ensure it spans full width */
+    }
+
+    .col-lg-9 {
+        width: 100%; /* Job listings take full width */
+    }
+
+    .job-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .job-card img {
+        margin-bottom: 15px;
+        width: 100%; /* Adjust image to container width */
+        max-width: 150px;
+        height: auto;
+    }
+
+    .job-card h5 {
+        font-size: 1rem;
+    }
+
+    .btn-apply {
+        width: 100%; /* Full-width button for smaller screens */
+    }
+}
+
+/* Adjust the main grid layout */
+@media (max-width: 576px) {
+    .row {
+        flex-direction: column; /* Stack rows */
+        padding: 0;
+    }
+}
+
+/* Adjust text overflow */
+.sidebar ul li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.hero-banner {
+    background: url('../images/website/job.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 50px 0;
+}
+/* Navbar link hover effect */
+.navbar-nav .nav-link {
+    transition: color 0.3s ease; /* Smooth transition for text color */
+    color: #000; /* Default text color */
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--job-seeker-color); /* Change text color on hover */
+   
+}
+
+
+.hero-section {
+    background-image: url('../images/website/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content h1,
+.hero-content p {
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    color: var(--button-text-color);
+    backdrop-filter: blur(5px);
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+}
+
+.hero-content p {
+    font-size: 2.5rem;
+}
+
+/* Responsive Font Sizes */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content p {
+        font-size: 2rem;
+    }
+}
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+}
+
+.btn-custom {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    display: flex;
+    border-radius: 0;
+    align-items: center;
+    gap: 8px;
+    color: var(--button-text-color);
+    white-space: nowrap;
+}
+
+.btn-custom:hover {
+    color: var(--button-text-color);
+    background-color: var(--button-dark-color);
+}
+
+.btn-job-seeker {
+    background-color: var(--job-seeker-color);
+}
+
+.btn-employer {
+    background-color: var(--employer-color);
+}
+
+.btn-login {
+    background-color: var(--login-color);
+}
+
+.btn-custom i {
+    font-size: 1.2rem;
+}
+
+/* Button Container Adjustments */
+@media (min-width: 992px) {
+    .button-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+}
+@media (max-width: 991px) {
+    .navbar-collapse {
+        padding: 15px;
+        box-shadow: none;
+    }
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .btn-custom {
+        width: 100%;
+        justify-content: center;
+    }
+    .heronavbar {
+        height: auto;
+    }
+}
+
+.feature-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 0;
+    border-bottom: 2px solid #ccc;
+    flex-wrap: wrap;
+}
+
+.feature {
+    text-align: center;
+    padding: 20px;
+    flex: 1 1 150px; /* Responsive flex items */
+    transition: transform 0.3s;
+    position: relative;
+    min-width: 200px;
+    margin: 10px; /* Spacing between features */
+}
+
+.feature:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+.feature:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10px; /* Position line just outside */
+    width: 1px; /* Line thickness */
+    height: 100%;
+    background-color: #ccc; /* Line color */
+}
+
+.feature i {
+    font-size: 3.5rem;
+    color: var(--job-seeker-color);
+    margin-bottom: 10px;
+}
+
+.feature .number {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--job-seeker-color);
+}
+
+.feature p:last-child {
+    font-size: 14px;
+    color: #777;
+    text-transform: uppercase;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .feature-section {
+        flex-direction: column; /* Stack features vertically */
+        align-items: center;
+    }
+    .feature {
+        width: 100%; /* Full width on smaller screens */
+        margin: 10px 0; /* Margin for spacing */
+    }
+    .feature:not(:last-child)::after {
+        display: none; /* Hide lines on small screens */
+    }
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    margin-top: 20px;
+    width: 40%; /* Adjust width as needed */
+}
+
+.search-bar input {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    width: 100%; /* Full width for input */
+}
+
+.search-bar button {
+    background-color: var(--job-seeker-color);
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.search-bar button i {
+    font-size: 18px;
+}
+
+/* Responsive Search Bar */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
+
+.nav-link.active {
+    color: var(--job-seeker-color);
+  }
+
+
+  .categories-section {
+    background-color: var(--background-color);
+    padding: 40px 20px;
+    width: 100%;
+  }
+
+.categories-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+.text-center{
+    margin-bottom: 50px;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 items per row */
+    gap: 20px;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),
+            -10px -10px 10px rgb(221, 221, 221);
+    transition: transform 0.5s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1) inset,
+            -12px -12px 1px white inset;
+    
+}
+
+.category-item i {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.category-item i:hover,
+.category-item p:hover{
+    color: var(--job-seeker-color);
+}
+
+.category-item p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row on small screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .categories-grid {
+        grid-template-columns: 1fr; /* 1 item per row on extra small screens */
+    }
+}
+
+.job-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.job-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+.job-card h5 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.job-info span {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+}
+.btn-apply {
+    background-color: var(--job-seeker-color);
+    color: var(--button-text-color);
+    font-size: 0.9rem;
+    padding: 5px 15px;
+    text-align: center;
+    border-radius: 0;
+    transition:scale 0.4s;
+}
+.btn-apply:hover {
+    color: var(--button-text-color);
+    scale: 1.1;
+    background-color: var(--job-seeker-color);
+}
+.subscribe-box {
+    margin-top: 60px;
+    background-color: var(--darkgray-color);
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.subscribe-box h5 {
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.subscribe-box button{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.subscribe-box p{
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: var(--text-gray-color);
+}
+
+
+
+
+.how-it-works {
+    background-color: var(--background-color); 
+    padding: 60px 0; 
+}
+
+.how-it-works h2 {
+    font-size: 2.5rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    margin-bottom: 20px; 
+    color: #333; 
+}
+
+.how-it-works p {
+    font-size: 1rem; 
+    color: #777; 
+    margin-bottom: 50px; 
+    font-weight: 400; 
+}
+
+.how-it-works .row {
+    display: flex;
+    justify-content: center;
+}
+.how-it-works .col-md-4 {
+    border-right: 1px solid #ddd; 
+}
+
+.how-it-works .col-md-4:last-child {
+    border-right: none;
+}
+
+.how-it-works .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.how-it-works .img-fluid {
+    max-width: 300px; 
+    height: auto; 
+    margin-bottom: 15px; 
+}
+
+.how-it-works h5 {
+    font-size: 2.2rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    color: #333; 
+    margin-top: 10px; 
+}
+
+
+.footer {
+    background-color: var(--button-dark-color); /* Dark background */
+    color: #fff;
+
+    padding: 60px 0; 
+    width: 100%; 
+    position: relative; 
+    left: 0; 
+    /* padding-top: 100px; */
+}
+
+.footer h5{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+
+.footer-logo {
+    width:200px;
+    max-width: 200px; 
+}
+
+.footer ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+}
+
+.footer li {
+    margin-bottom: 10px; /* Space between items */
+}
+
+.footer a {
+    color: var(--text-gray-color); /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s;
+    transition: font-size 0.3s; /* Smooth transition for hover effect */
+}
+
+.footer a:hover {
+    /* text-decoration: underline; Underline on hover */
+    font-size: large;
+    color: #f0f0f0; /* Change color on hover */
+}
+
+
+
+.copyright {
+    color: var(--button-text-color);
+    background-color: var(--dark-version-color);
+    width: 100%; 
+    position: relative; 
+}
+
+/* ... rest of your CSS ... */
+
+.footerframe {
+    margin: 0; 
+    padding: 0;
+}
+.footerframe p{
+    padding-left: 20px;
+}
+
+.social-icons {
+    display: flex; 
+    align-items: center; 
+    /* margin-left: 10px;  */
+}
+
+.social-icons a {
+    margin-left: 10px; 
+    color: var(--text-gray-color); 
+    font-size: 1.2rem; 
+    transition: color 0.3s; 
+}
+
+.social-icons a:hover {
+    color: #f0f0f0; 
+}
+
+.row {
+    justify-content: center; 
+}
+
+.col-md-4 {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    margin-bottom: 10px; 
+}
+
+.mainlogo{
+    height: 10vh;
+}
+/* Default font size */
+/* html {
+    font-size: 16px; 
+} */
+
+/* Increase font size for better readability on smaller screens */
+/* @media (max-width: 768px) {
+    html {
+        font-size: 17px; 
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 17px; 
+    }
+} */
+
+
+
+.star{
+    /* font-weight: bold; */
+    font-size: 20px;
+    color: red;
+}
+.form-check {
+    display: flex; /* Make form-check a flex container */
+    flex-direction: column; /* Align children in a column */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    
+}
+
+.form-check-input {
+    display: none;
+    
+    margin-bottom: 0.5rem; /* Add space between radio button and label */
+}
+
+/* Optional: additional styling for hover and checked states */
+.form-check-label:hover {
+    color: var(--job-seeker-color);
+    font-weight: bold;
+    transition: scale 0.2s;
+    scale: 1.2;
+    cursor: pointer;
+}
+
+.form-check-input:checked + .form-check-label {
+    color: var(--job-seeker-color); /* Matches Bootstrap primary color */
+    scale: 1.2;
+    font-weight: bold;
+}
