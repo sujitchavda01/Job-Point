@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
         <div class="tab-content pt-3" id="myTabContent">
           <div class="tab-pane fade show active" id="job-seeker" role="tabpanel" aria-labelledby="job-seeker-tab">
-            <form method="post" action="./Process/register.php">
+            <form method="post" action="../Process/register.php">
               <div class="mb-3">
                 <label for="firstName" class="form-label">Name<span class="star">*</span></label>
                 <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" pattern="[A-Za-z]+" title="Only alphabets are allowed." required>
@@ -401,19 +401,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="loginForm" action="../Process/login.php" method="post">
-                    <div class="mb-3">
-                        <label for="loginIdentifier" class="form-label">Email or Mobile Number</label>
-                        <input type="text" class="form-control" id="loginIdentifier" name="loginIdentifier" placeholder="Enter email or mobile number" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="loginPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password" required>
-                    </div>
-                    <div class="mb-3 text-end">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" data-bs-dismiss="modal">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+              <form id="loginForm" action="../Process/login.php" method="post">
+                      <div class="mb-3">
+                          <label for="loginIdentifier" class="form-label">Email or Mobile Number</label>
+                          <input type="text" class="form-control" id="loginIdentifier" name="loginIdentifier" placeholder="Enter email or mobile number" required 
+                              pattern="(^[0-9]{10}$|^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$)" 
+                              title="Please enter a valid email address or a 10-digit mobile number." 
+                              oninput="validateInput(this)">
+                      </div>
+
+                      <div class="mb-3">
+                          <label for="loginPassword" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Enter password" required>
+                      </div>
+                      <div class="mb-3 text-end">
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" data-bs-dismiss="modal">Forgot Password?</a>
+                      </div>
+                      <button type="submit" class="btn btn-primary w-100" name="login_user">Login</button>
                 </form>
             </div>
         </div>
@@ -430,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="forgotPasswordForm" action="">
+                    <form id="forgotPasswordForm" action="../Process/forgot.php">
                         <div class="mb-3">
                             <label for="forgotEmail" class="form-label">Email Address</label>
                             <input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email address" required>

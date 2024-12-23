@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="forgotPasswordForm">
+                    <form id="forgotPasswordForm" method="POST" action="Process/forgot.php">
                         <div class="mb-3">
                             <label for="forgotEmail" class="form-label">Email Address</label>
                             <input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email address" required>
