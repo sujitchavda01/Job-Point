@@ -1,12 +1,12 @@
 :root {
 
-    /* --job-seeker-color: #436fc7;
+    --job-seeker-color: #436fc7;
     --employer-color: #4fa671;
-    --login-color: #ed7f38; */
+    --login-color: #ed7f38;
 
-    --job-seeker-color: #0059b8;
+    /* --job-seeker-color: #0059b8;
     --employer-color: #228d3b;
-    --login-color: #e25125;
+    --login-color: #e25125; */
 
 
     --button-text-color: #ffffff;
@@ -15,6 +15,12 @@
     --text-gray-color:#7a7a7a;
     --background-color:#f4f4f4;
     --darkgray-color:#f5f3f3fa;
+
+    --button-background-color:#c64754;
+}
+
+.btn-logout{
+    background-color: var(--button-background-color);
 }
 
 .modal-content .btn {

@@ -16,43 +16,105 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="../images/website/logo.png" alt="Job Point Logo" height="70">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Jobs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Other Pages\companies.php">Companies</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
-                </li>
-            </ul>
-            <div class="d-flex button-container">
-                <a href="#" class="btn btn-custom btn-job-seeker" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="job-seeker">
-                    <i class="bi bi-person-circle"></i> JOB SEEKER
-                </a>
-                <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
-                    <i class="bi bi-briefcase-fill"></i> EMPLOYER
-                </a>
-                <a href="#" class="btn btn-custom btn-login" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    <i class="bi bi-box-arrow-in-right"></i> LOGIN
-                </a>
+<?php
+// Enable error reporting for debugging (remove in production)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+try {
+    // Check if the user is logged in by verifying session variables
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type'])) {
+    ?>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/website/logo.png" alt="Job Point Logo" height="70">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="jobs.php">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="companies.php">Companies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                </ul>
+                <div class="d-flex button-container">
+                    <a href="#" class="btn btn-custom btn-job-seeker" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="job-seeker">
+                        <i class="bi bi-person-circle"></i> JOB SEEKER
+                    </a>
+                    <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
+                        <i class="bi bi-briefcase-fill"></i> EMPLOYER
+                    </a>
+                    <a href="#" class="btn btn-custom btn-login" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi bi-box-arrow-in-right"></i> LOGIN
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+    <?php
+    } else { ?>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                  <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="jobs.php">Jobs</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="companies.php">Companies</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Blog</a>
+                      </li>
+                  </ul>
+                  <div class="d-flex button-container">
+                      <a href="#" class="btn btn-custom btn-job-seeker" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="job-seeker">
+                          <i class="bi bi-person-circle"></i> JOB SEEKER
+                      </a>
+                      <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
+                          <i class="bi bi-person-square"></i> ACCOUNT
+                      </a>
+                      <a href="Process/logout.php" class="btn btn-custom btn-logout">
+                          <i class="bi bi-power"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </nav>
+    <?php
+    }
+} catch (Exception $e) {
+    // Handle general errors
+    error_log("Error: " . $e->getMessage());
+    $_SESSION['status_title'] = "Error!";
+    $_SESSION['status'] = "An unexpected error occurred.";
+    $_SESSION['status_code'] = "error";
+    header("Location: ../");
+    exit();
+}
+?>
+
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const registrationModal = document.getElementById('registrationModal');

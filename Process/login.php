@@ -10,7 +10,7 @@ try {
     require '../DB Connection/config.php'; // Ensure this path is correct
 
     // Check if the form was submitted
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['login_user']) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_user'])) {
         // Sanitize and validate input
         $loginIdentifier = trim($_POST['loginIdentifier']);
         $loginPassword = $_POST['loginPassword'];
@@ -34,12 +34,10 @@ try {
                 $_SESSION['user_type'] = $user_type; // Store user type in session
 
                 // Redirect based on user type
-                if ($user_type === 'Employer') {
-                    header("Location: employer_dashboard.php"); // Redirect to employer dashboard
-                } else if ($user_type === 'Employee') {
-                    header("Location: employee_dashboard.php"); // Redirect to employee dashboard
+                if ($user_type === 'Employer' || $user_type === 'Employer Organization') {
+                    header("Location: ../Employer/Employer.php"); // Redirect to employee dashboard
                 } else {
-                    header("Location: default_dashboard.php"); // Redirect to a default dashboard
+                    header("Location: ../JobSeeker/Job_Seeker.php"); // Redirect to a default dashboard
                 }
                 exit(); // Make sure to exit after redirect
             } else {
