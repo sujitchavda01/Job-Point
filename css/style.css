@@ -738,3 +738,38 @@
     scale: 1.2;
     font-weight: bold;
 }
+
+
+
+
+
+
+
+
+
+
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: #f8f9fa; /* Light background */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Spacing */
+    transition: border-color 0.2s;
+}
+
+.custom-file-upload:hover {
+    border-color: #80bdff; /* Border color on hover */
+}
+
+.upload-icon {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 1.2em; /* Size of the icon */
+    color: #007bff; /* Color of the icon */
+}
+
+.upload-text {
+    font-weight: 500; /* Text weight */
+    color: #495057; /* Text color */
+}

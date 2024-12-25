@@ -9,20 +9,26 @@ try {
         throw new Exception("Connection failed: " . $conn->connect_error);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['register_jobseeker']) {
-        // Sanitize inputs
-        $first_name = $conn->real_escape_string($_POST['firstName']);
-        $middle_name = $conn->real_escape_string($_POST['middleName']);
-        $last_name = $conn->real_escape_string($_POST['lastName']);
-        $gender = $conn->real_escape_string($_POST['gender']);
-        $date_of_birth = $conn->real_escape_string($_POST['dateOfBirth']);
-        $email = $conn->real_escape_string($_POST['email']);
-        $contact_no = $conn->real_escape_string($_POST['Contact_No']);
-        $password = password_hash($conn->real_escape_string($_POST['password']), PASSWORD_BCRYPT);
-        $service_type = $conn->real_escape_string($_POST['serviceType']);
-        $education = $conn->real_escape_string($_POST['education']);
-        $experience = $conn->real_escape_string($_POST['experience']);
-        $bio = $conn->real_escape_string($_POST['bio']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_jobseeker'])) {
+        // Utility function to convert text to PascalCase
+        function toPascalCase($string) {
+            // Remove extra spaces and capitalize each word
+            return str_replace(' ', '', ucwords(strtolower(trim($string))));
+        }
+
+        // Sanitize and format inputs
+        $first_name = toPascalCase($conn->real_escape_string($_POST['firstName']));
+        $middle_name = toPascalCase($conn->real_escape_string($_POST['middleName']));
+        $last_name = toPascalCase($conn->real_escape_string($_POST['lastName']));
+        $gender = toPascalCase($conn->real_escape_string($_POST['gender']));
+        $date_of_birth = trim($conn->real_escape_string($_POST['dateOfBirth'])); // Date of birth should remain as entered
+        $email = trim($conn->real_escape_string($_POST['email'])); // Email should remain as entered
+        $contact_no = trim($conn->real_escape_string($_POST['Contact_No'])); // Contact number should remain as entered
+        $password = password_hash($conn->real_escape_string($_POST['password']), PASSWORD_BCRYPT); // Password is hashed
+        $service_type = toPascalCase($conn->real_escape_string($_POST['serviceType']));
+        $education = toPascalCase($conn->real_escape_string($_POST['education']));
+        $experience = toPascalCase($conn->real_escape_string($_POST['experience']));
+        $bio = toPascalCase($conn->real_escape_string($_POST['bio']));
 
         // Start a transaction
         $conn->begin_transaction();
@@ -51,9 +57,9 @@ try {
         } else {
             throw new Exception("Error inserting into users: " . $conn->error);
         }
-    }else{
+    } else {
         header("Location: ../"); // Redirect back to the registration page
-        exit;
+        exit();
     }
 } catch (Exception $e) {
     // Rollback the transaction if any query fails

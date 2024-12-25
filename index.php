@@ -1,4 +1,4 @@
-<?php include 'base root\header.php'; ?>  
+<?php include 'base root/header.php'; ?>  
 
 <div class="hero-section">
     <div class="container">
@@ -191,4 +191,4 @@
     </div>
 </section>
 
-<?php include 'base root\footer.php'; ?>
+<?php include 'base root/footer.php'; ?>

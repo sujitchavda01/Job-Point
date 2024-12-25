@@ -63,54 +63,146 @@ try {
         </div>
     </nav>
     <?php
-    } else { ?>
+  }else{
+    if($_SESSION['user_type']==='Job Seeker'){
+      ?>
       <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
-          <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                  <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav ms-auto">
-                      <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="jobs.php">Jobs</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="companies.php">Companies</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">Blog</a>
-                      </li>
-                  </ul>
-                  <div class="d-flex button-container">
-                      <a href="#" class="btn btn-custom btn-job-seeker" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="job-seeker">
-                          <i class="bi bi-person-circle"></i> JOB SEEKER
-                      </a>
-                      <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
-                          <i class="bi bi-person-square"></i> ACCOUNT
-                      </a>
-                      <a href="Process/logout.php" class="btn btn-custom btn-logout">
-                          <i class="bi bi-power"></i>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </nav>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/website/logo.png" alt="Job Point Logo" class="mainlogo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Other Pages/jobs.php">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Other Pages/companies.php">Companies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                </ul>
+                <div class="d-flex button-container">
+                    <a href="../JobSeeker/account.php" class="btn btn-custom btn-employer">
+                        <i class="bi bi-person-square"></i> ACCOUNT
+                    </a>
+                    <a href="../Process/logout.php" class="btn btn-custom btn-logout">
+                        <i class="bi bi-power"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
     <?php
     }
+    elseif($_SESSION['user_type']==='Employer Individual'){
+    ?>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/website/logo.png" alt="Job Point Logo" class="mainlogo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Other Pages/jobs.php">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Other Pages/companies.php">Companies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                </ul>
+                <div class="d-flex button-container">
+                    <a href="#" class="btn btn-custom btn-login" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="job-seeker">
+                        <i class="bi bi-pencil-square"></i> POST A JOB
+                    </a>
+                    <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
+                        <i class="bi bi-person-square"></i> ACCOUNT
+                    </a>
+                    <a href="../Process/logout.php" class="btn btn-custom btn-logout">
+                        <i class="bi bi-power"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <?php
+    }
+    elseif($_SESSION['user_type']==='Employer Organization'){
+    ?>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../images/website/logo.png" alt="Job Point Logo" class="mainlogo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Other Pages/jobs.php">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Other Pages/companies.php">Companies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                </ul>
+                <div class="d-flex button-container">
+                    <a href="#" class="btn btn-custom btn-login" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="job-seeker">
+                      <i class="bi bi-pencil-square"></i> POST A JOB
+                    </a>
+                    <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
+                        <i class="bi bi-person-square"></i> ACCOUNT
+                    </a>
+                    <a href="../Process/logout.php" class="btn btn-custom btn-logout">
+                        <i class="bi bi-power"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <?php
+    }
+  ?>
+    
+    <?php
+  // } else { ?>
+   
+  <?php
+  }
 } catch (Exception $e) {
-    // Handle general errors
-    error_log("Error: " . $e->getMessage());
-    $_SESSION['status_title'] = "Error!";
-    $_SESSION['status'] = "An unexpected error occurred.";
-    $_SESSION['status_code'] = "error";
-    header("Location: ../");
-    exit();
+  // Handle general errors
+  error_log("Error: " . $e->getMessage());
+  $_SESSION['status_title'] = "Error!";
+  $_SESSION['status'] = "An unexpected error occurred.";
+  $_SESSION['status_code'] = "error";
+  header("Location: ../");
+  exit();
 }
 ?>
 
@@ -256,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <label for="bio" class="form-label">Bio</label>
                 <textarea class="form-control" id="bio" name="bio" rows="3" placeholder="Tell us about yourself"></textarea>
               </div>
-              <button type="submit" class="btn w-100" style="background-color: #0059b8; color: #ffffff; font-weight: bold;">Register</button>
+              <button type="submit" class="btn w-100" style="background-color: #0059b8; color: #ffffff; font-weight: bold;" name="register_jobseeker">Register</button>
             </form>
           </div>
           <div class="tab-pane fade" id="employer" role="tabpanel" aria-labelledby="employer-tab">
@@ -274,7 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
               }
             </script>
-            <form method="post" action="../Process/register_employer.php">
               <div class="mb-4">
                 <label class="form-label">Employer Type<span class="star">*</span></label>
                 
@@ -300,130 +391,125 @@ document.addEventListener('DOMContentLoaded', () => {
 
               </div>
               <div id="individualFields" style="display: none;">
-
-                <div class="mb-3">
-                  <label for="first_name" class="form-label">First Name<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="first_name" name="first_name" pattern="[A-Za-z]+" title="Only alphabets are allowed.">
+                <form action="../Process/register_employer.php" method="post">
+                    <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" pattern="[A-Za-z]+" title="Only alphabets are allowed." required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="middle_name" class="form-label">Middle Name<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="middle_name" name="middle_name" pattern="[A-Za-z]+" title="Only alphabets are allowed." required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" pattern="[A-Za-z]+" title="Only alphabets are allowed." required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="building" class="form-label">Flat, House no.,Building, Company, Apartment<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="building" name="building" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="street" class="form-label">Landmark ,Area, Street, Sector, Village<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="street" name="street" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="city" class="form-label">City<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="state" class="form-label">State<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="state" name="state" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="country" class="form-label">Country<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="country" name="country" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="pincode" class="form-label">Pincode<span class="star">*</span></label>
+                    <input type="text" class="form-control" id="pincode" name="pincode" pattern="\d{6}" title="Enter a valid 6-digit pincode" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="email" class="form-label">Email<span class="star">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                    <label for="password" class="form-label">Password<span class="star">*</span></label>
+                    <input type="password" class="form-control" id="password" name="password" minlength="8" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact_no" class="form-label">Contact No<span class="star">*</span></label>
+                        <input type="tel" class="form-control" id="contact_no" name="contact_no" pattern="\d{10}" title="Enter a valid 10-digit contact number" required>
+                    </div>
+                    <button type="submit" class="btn w-100" style="background-color: #0059b8; color: #ffffff; font-weight: bold;" name="register_individual">Register</button>
                 </div>
-                <div class="mb-3">
-                  <label for="middle_name" class="form-label">Middle Name<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="middle_name" name="middle_name" pattern="[A-Za-z]+" title="Only alphabets are allowed.">
-                </div>
-                <div class="mb-3">
-                  <label for="last_name" class="form-label">Last Name<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="last_name" name="last_name" pattern="[A-Za-z]+" title="Only alphabets are allowed.">
-                </div>
-                <div class="mb-3">
-                  <label for="building" class="form-label">Building<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="building" name="building">
-                </div>
-                <div class="mb-3">
-                  <label for="street" class="form-label">Street<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="street" name="street">
-                </div>
-                <div class="mb-3">
-                  <label for="city" class="form-label">City<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="city" name="city">
-                </div>
-                <div class="mb-3">
-                  <label for="state" class="form-label">State<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="state" name="state">
-                </div>
-                <div class="mb-3">
-                  <label for="country" class="form-label">Country<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="country" name="country">
-                </div>
-                <div class="mb-3">
-                  <label for="pincode" class="form-label">Pincode<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="pincode" name="pincode" pattern="\d{6}" title="Enter a valid 6-digit pincode">
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email<span class="star">*</span></label>
-                  <input type="email" class="form-control" id="email" name="email">
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password<span class="star">*</span></label>
-                  <input type="password" class="form-control" id="password" name="password" minlength="8">
-                </div>
-                <div class="mb-3">
-                  <label for="contact_no" class="form-label">Contact No<span class="star">*</span></label>
-                  <input type="tel" class="form-control" id="contact_no" name="contact_no" pattern="\d{10}" title="Enter a valid 10-digit contact number">
-                </div>
-              </div>
+              </form>
               <div id="organizationFields" style="display: none;">
-                <div class="mb-3">
-                  <label for="company_name" class="form-label">Company Name<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="company_name" name="company_name">
-                </div>
-                <div class="mb-3">
-                  <label for="registration_number" class="form-label">Registration Number<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="registration_number" name="registration_number">
-                </div>
-                <div class="mb-3">
-                  <label for="building" class="form-label">Building<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="building" name="building">
-                </div>
-                <div class="mb-3">
-                  <label for="street" class="form-label">Street<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="street" name="street">
-                </div>
-                <div class="mb-3">
-                  <label for="city" class="form-label">City<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="city" name="city">
-                </div>
-                <div class="mb-3">
-                  <label for="state" class="form-label">State<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="state" name="state">
-                </div>
-                <div class="mb-3">
-                  <label for="country" class="form-label">Country<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="country" name="country">
-                </div>
-                <div class="mb-3">
-                  <label for="pincode" class="form-label">Pincode<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="pincode" name="pincode" pattern="\d{6}" title="Enter a valid 6-digit pincode">
-                </div>
-                <div class="mb-3">
-                  <label for="recruiter_name" class="form-label">Recruiter Name<span class="star">*</span></label>
-                  <input type="text" class="form-control" id="recruiter_name" name="recruiter_name">
-                </div>
-                <div class="mb-3">
-                  <label for="company_contact_no" class="form-label">Company Contact No<span class="star">*</span></label>
-                  <input type="tel" class="form-control" id="company_contact_no" name="company_contact_no" pattern="\d{10}" title="Enter a valid 10-digit contact number">
-                </div>
-                <div class="mb-3">
-                  <label for="company_website" class="form-label">Company Website (Optional)</label>
-                  <input type="url" class="form-control" id="company_website" name="company_website">
-                </div>
-                <div class="mb-3">
-                  <label for="company_description" class="form-label">Company Description<span class="star">*</span></label>
-                  <textarea class="form-control" id="company_description" name="company_description" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email<span class="star">*</span></label>
-                  <input type="email" class="form-control" id="email" name="email">
-                </div>
-                 <div class="mb-3">
-                  <label for="password" class="form-label">Password<span class="star">*</span></label>
-                  <input type="password" class="form-control" id="password" name="password" minlength="8" required>
-                </div>
-                <div class="mb-3">
-                  <label for="confirm_password" class="form-label">Confirm Password<span class="star">*</span></label>
-                  <input type="password" class="form-control" id="confirm_password" name="confirm_password" minlength="8" required>
-                </div>
+              <form action="../Process/register_employer.php" method="post">
+                    <div class="mb-3">
+                        <label for="company_name" class="form-label">Company Name<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="company_name" name="company_name"  required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registration_number" class="form-label">Registration Number<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="registration_number" name="registration_number" minlength="21" maxlength="21" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="building" class="form-label">Flat, House no.,Building, Company, Apartment<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="building" name="building" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="street" class="form-label">Landmark ,Area, Street, Sector, Village<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="street" name="street" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="city" name="city" pattern="[A-Za-z]+" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label">State<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="state" name="state" pattern="[A-Za-z]+" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="country" name="country" pattern="[A-Za-z]+" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pincode" class="form-label">Pincode<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="pincode" name="pincode" pattern="\d{6}" title="Enter a valid 6-digit pincode" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recruiter_name" class="form-label">Recruiter Name<span class="star">*</span></label>
+                        <input type="text" class="form-control" id="recruiter_name" name="recruiter_name" pattern="[A-Za-z]+" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="company_contact_no" class="form-label">Company Contact No<span class="star">*</span></label>
+                        <input type="tel" class="form-control" id="company_contact_no" name="company_contact_no" pattern="\d{10}" title="Enter a valid 10-digit contact number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recruiter_contact_no" class="form-label">Recruiter Contact No<span class="star">*</span></label>
+                        <input type="tel" class="form-control" id="recruiter_contact_no" name="recruiter_contact_no" pattern="\d{10}" title="Enter a valid 10-digit contact number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="company_website" class="form-label">Company Website (Optional)</label>
+                        <input type="url" class="form-control" id="company_website" name="company_website">
+                    </div>
+                    <div class="mb-3">
+                        <label for="company_description" class="form-label">Company Description<span class="star">*</span></label>
+                        <textarea class="form-control" id="company_description" name="company_description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email<span class="star">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password<span class="star">*</span></label>
+                        <input type="password" class="form-control" id="password" name="password" minlength="8" required>
+                    </div>
+                    <button type="submit" class="btn w-100" style="background-color: #0059b8; color: #ffffff; font-weight: bold;" name="register_organization">Register</button>
+                </form>
               </div>
-              <script>
-                document.querySelector('form').addEventListener('submit', (e) => {
-                    const password = document.getElementById('password').value;
-                    const confirmPassword = document.getElementById('confirm_password').value;
-                    if (password !== confirmPassword) {
-                        e.preventDefault();
-                        alert('Passwords do not match!');
-                    }
-                    });
-              </script>
-              <button type="submit" class="btn w-100" style="background-color: #0059b8; color: #ffffff; font-weight: bold;">Register</button>
-            </form>
+             
+              
           </div>
         </div>
       </div>

@@ -25,15 +25,6 @@ ini_set('display_errors', 1);
 try {
     // Check if the user is logged in by verifying session variables
     if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type'])) {
-      // if($_SESSION['user_type']=='Job Seeker'){
-      //   echo "Hi job seeker";
-      // }
-      // elseif($_SESSION['user_type']=='Employer Individual'){
-
-      // }
-      // elseif($_SESSION['user_type']=='Employer Organization'){
-
-      // }
     ?>
       <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
           <div class="container-fluid">
@@ -72,81 +63,10 @@ try {
               </div>
           </div>
       </nav>
-      <?php
-    } else { ?>
-     <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
-          <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                  <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav ms-auto">
-                      <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="Other Pages/jobs.php">Jobs</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="Other Pages/companies.php">Companies</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">Blog</a>
-                      </li>
-                  </ul>
-                  <div class="d-flex button-container">
-                      <a href="#" class="btn btn-custom btn-job-seeker" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="job-seeker">
-                          <i class="bi bi-person-circle"></i> JOB SEEKER
-                      </a>
-                      <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
-                          <i class="bi bi-person-square"></i> ACCOUNT
-                      </a>
-                      <a href="Process/logout.php" class="btn btn-custom btn-logout">
-                          <i class="bi bi-power"></i>
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </nav>
-    <?php
-    }
-} catch (Exception $e) {
-    // Handle general errors
-    error_log("Error: " . $e->getMessage());
-    $_SESSION['status_title'] = "Error!";
-    $_SESSION['status'] = "An unexpected error occurred.";
-    $_SESSION['status_code'] = "error";
-    header("Location: ../");
-    exit();
-}
-?>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const registrationModal = document.getElementById('registrationModal');
-  const jobSeekerTab = document.getElementById('job-seeker-tab');
-  const employerTab = document.getElementById('employer-tab');
 
-  // Add event listeners to the buttons
-  document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
-    button.addEventListener('click', () => {
-      const targetTab = button.getAttribute('data-tab');
-
-      // Show the correct tab when the modal opens
-      if (targetTab === 'job-seeker') {
-        jobSeekerTab.click();
-      } else if (targetTab === 'employer') {
-        employerTab.click();
-      }
-    });
-  });
-});
-</script>
-
-<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+      <!-- model by default display -->
+      <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -322,11 +242,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <input type="text" class="form-control" id="last_name" name="last_name" pattern="[A-Za-z]+" title="Only alphabets are allowed." required>
                     </div>
                     <div class="mb-3">
-                    <label for="building" class="form-label">Building<span class="star">*</span></label>
+                    <label for="building" class="form-label">Flat, House no.,Building, Company, Apartment<span class="star">*</span></label>
                     <input type="text" class="form-control" id="building" name="building" required>
                     </div>
                     <div class="mb-3">
-                    <label for="street" class="form-label">Street<span class="star">*</span></label>
+                    <label for="street" class="form-label">Landmark ,Area, Street, Sector, Village<span class="star">*</span></label>
                     <input type="text" class="form-control" id="street" name="street" required>
                     </div>
                     <div class="mb-3">
@@ -368,14 +288,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="mb-3">
                         <label for="registration_number" class="form-label">Registration Number<span class="star">*</span></label>
-                        <input type="text" class="form-control" id="registration_number" name="registration_number" required>
+                        <input type="text" class="form-control" id="registration_number" name="registration_number" minlength="21" maxlength="21" required>
                     </div>
                     <div class="mb-3">
-                        <label for="building" class="form-label">Building<span class="star">*</span></label>
+                        <label for="building" class="form-label">Flat, House no.,Building, Company, Apartment<span class="star">*</span></label>
                         <input type="text" class="form-control" id="building" name="building" required>
                     </div>
                     <div class="mb-3">
-                        <label for="street" class="form-label">Street<span class="star">*</span></label>
+                        <label for="street" class="form-label">Landmark ,Area, Street, Sector, Village<span class="star">*</span></label>
                         <input type="text" class="form-control" id="street" name="street" required>
                     </div>
                     <div class="mb-3">
@@ -422,23 +342,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <label for="password" class="form-label">Password<span class="star">*</span></label>
                         <input type="password" class="form-control" id="password" name="password" minlength="8" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="confirm_password" class="form-label">Confirm Password<span class="star">*</span></label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" minlength="8" required>
-                    </div>
                     <button type="submit" class="btn w-100" style="background-color: #0059b8; color: #ffffff; font-weight: bold;" name="register_organization">Register</button>
                 </form>
               </div>
-              <script>
-                document.querySelector('form').addEventListener('submit', (e) => {
-                    const password = document.getElementById('password').value;
-                    const confirmPassword = document.getElementById('confirm_password').value;
-                    if (password !== confirmPassword) {
-                        e.preventDefault();
-                        alert('Passwords do not match!');
-                    }
-                    });
-              </script>
+             
               
           </div>
         </div>
@@ -527,3 +434,330 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </div>
+
+
+
+
+    <?php
+    }else{
+      if($_SESSION['user_type']==='Job Seeker'){
+        ?>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                  <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Other Pages/jobs.php">Jobs</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Other Pages/companies.php">Companies</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Blog</a>
+                      </li>
+                  </ul>
+                  <div class="d-flex button-container">
+                      <a href="JobSeeker/account.php" class="btn btn-custom btn-employer" >
+                          <i class="bi bi-person-square"></i> ACCOUNT
+                      </a>
+                      <a href="Process/logout.php" class="btn btn-custom btn-logout">
+                          <i class="bi bi-power"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </nav>
+      <?php
+      }
+      elseif($_SESSION['user_type']==='Employer Individual'){
+      ?>
+
+      <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                  <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Other Pages/jobs.php">Jobs</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Other Pages/companies.php">Companies</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Blog</a>
+                      </li>
+                  </ul>
+                  <div class="d-flex button-container">
+                      <a href="#" class="btn btn-custom btn-login" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="job-seeker">
+                          <i class="bi bi-pencil-square"></i> POST A JOB
+                      </a>
+                      <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
+                          <i class="bi bi-person-square"></i> ACCOUNT
+                      </a>
+                      <a href="Process/logout.php" class="btn btn-custom btn-logout">
+                          <i class="bi bi-power"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </nav>
+
+      <?php
+      }
+      elseif($_SESSION['user_type']==='Employer Organization'){
+      ?>
+
+      <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                  <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/Job Point">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Other Pages/jobs.php">Jobs</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Other Pages/companies.php">Companies</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Blog</a>
+                      </li>
+                  </ul>
+                  <div class="d-flex button-container">
+                      <a href="#" class="btn btn-custom btn-login" data-bs-toggle="modal" data-bs-target="#postJobModal" data-tab="postJobModal">
+                        <i class="bi bi-pencil-square"></i> POST A JOB
+                      </a>
+                      <a href="#" class="btn btn-custom btn-employer" data-bs-toggle="modal" data-bs-target="#registrationModal" data-tab="employer">
+                          <i class="bi bi-person-square"></i> ACCOUNT
+                      </a>
+                      <a href="Process/logout.php" class="btn btn-custom btn-logout">
+                          <i class="bi bi-power"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </nav>
+
+      <!-- Model for Employer In Organization -->
+      <!-- Post Job Modal -->
+      <div class="modal fade" id="postJobModal" tabindex="-1" aria-labelledby="postJobModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered"> <!-- Large modal size -->
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="postJobModalLabel">Post a Job</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form id="postJobForm" method="POST" action="Process/post_job.php" enctype="multipart/form-data">
+                      <!-- Featuring Image Section -->
+                      <div class="mb-3">
+                          <label for="featuringImage" class="form-label">Featuring Image (Optional)</label>
+                          <div class="custom-file-upload" id="customFileUpload" onclick="document.getElementById('featuringImage').click();">
+                              <input type="file" id="featuringImage" name="featuring_image" accept="image/*" style="display:none;" />
+                              <span class="upload-icon">
+                                  <i class="fas fa-upload"></i> <!-- Font Awesome upload icon -->
+                              </span>
+                              <span class="upload-text">Choose an image</span>
+                          </div>
+                          <img id="imagePreview" src="#" alt="Image Preview" style="display:none; margin-top:10px; max-width: 100%;" />
+                      </div>
+
+                      <script>
+                      document.getElementById('featuringImage').addEventListener('change', function(event) {
+                          const file = event.target.files[0];
+                          const preview = document.getElementById('imagePreview');
+                          
+                          if (file) {
+                              const reader = new FileReader();
+                              reader.onload = function(e) {
+                                  preview.src = e.target.result;
+                                  preview.style.display = 'block'; // Show the image
+                              }
+                              reader.readAsDataURL(file);
+                          } else {
+                              preview.src = '#';
+                              preview.style.display = 'none'; // Hide the image
+                          }
+                      });
+                      </script>
+
+
+
+                          <div class="mb-3">
+                              <label for="jobTitle" class="form-label">Job Title<span class="text-danger">*</span></label>
+                              <input type="text" class="form-control" id="jobTitle" name="job_title" placeholder="Enter job title" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="jobType" class="form-label">Job Type<span class="text-danger">*</span></label>
+                              <select class="form-select" id="jobType" name="job_type" required>
+                                  <option value="">Select job type</option>
+                                  <option value="Full-time">Full-time</option>
+                                  <option value="Part-time">Part-time</option>
+                                  <option value="Internship">Internship</option>
+                                  <option value="Contract">Contract</option>
+                              </select>
+                          </div>
+                          <div class="mb-3">
+                              <label for="jobMode" class="form-label">Job Mode<span class="text-danger">*</span></label>
+                              <select class="form-select" id="jobMode" name="job_mode" required>
+                                  <option value="">Select job mode</option>
+                                  <option value="Online">Online</option>
+                                  <option value="Onsite">Onsite</option>
+                                  <option value="Hybrid">Hybrid</option>
+                              </select>
+                          </div>
+                          <div class="mb-3">
+                              <label for="jobDescription" class="form-label">Job Description<span class="text-danger">*</span></label>
+                              <textarea class="form-control" id="jobDescription" name="job_description" rows="4" placeholder="Enter job description" required></textarea>
+                          </div>
+                          <div class="mb-3">
+                            <label for="education" class="form-label">Highest Education Level<span class="star">*</span></label>
+                            <select class="form-select" id="education" name="education" required>
+                              <option value="" disabled selected>Select education level</option>
+                              <option value="Below 10th">Below 10th</option>
+                              <option value="10th Pass">10th Pass</option>
+                              <option value="12th Pass">12th Pass</option>
+                              <option value="Diploma">Diploma</option>
+                              <option value="Graduate">Graduate</option>
+                              <option value="Postgraduate">Postgraduate</option>
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                              <label for="skillsRequired" class="form-label">Type of Service/Skills Required<span class="text-danger">*</span></label>
+                              <select class="form-select" id="serviceType" name="serviceType" required>
+                              <option value="" disabled selected>Select service type</option>
+                              <option value="Law">Law</option>
+                              <option value="Health">Health</option>
+                              <option value="Medical">Medical</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Real Estate">Real Estate</option>
+                              <option value="Agriculture">Agriculture</option>
+                              <option value="Consultants">Consultants</option>
+                              <option value="Designing">Designing</option>
+                              <option value="Services">Services</option>
+                              <option value="Engineering">Engineering</option>
+                              <option value="Call Center">Call Center</option>
+                              <option value="E-Commerce">E-Commerce</option>
+                              <option value="Transport">Transport</option>
+                              <option value="Programming">Programming</option>
+                              <option value="Banking/Finance">Banking/Finance</option>
+                              <option value="Other">Other</option>
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                              <label for="applicationDeadline" class="form-label">Application Deadline<span class="text-danger">*</span></label>
+                              <div class="d-flex">
+                                  <input type="date" class="form-control w-50 me-2" id="applicationDeadline" name="application_deadline_date" required>
+                                  <input type="time" class="form-control w-50" name="application_deadline_time" required>
+                              </div>
+                          </div>
+
+                          <div class="mb-3">
+                              <label for="vacancy" class="form-label">Number of Vacancies<span class="text-danger">*</span></label>
+                              <input type="number" class="form-control" id="vacancy" name="vacancy" placeholder="Enter number of vacancies" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="salary" class="form-label">Salary<span class="text-danger">*</span></label>
+                              <input type="number" class="form-control" id="salary" name="salary" placeholder="Enter salary" required>
+                          </div>
+                          Job Location:
+                          <div class="mb-3">
+                          <label for="building" class="form-label">Flat, House no.,Building, Company, Apartment<span class="star">*</span></label>
+                          <input type="text" class="form-control" id="building" name="building" required>
+                          </div>
+                          <div class="mb-3">
+                          <label for="street" class="form-label">Landmark ,Area, Street, Sector, Village<span class="star">*</span></label>
+                          <input type="text" class="form-control" id="street" name="street" required>
+                          </div>
+                          <div class="mb-3">
+                          <label for="city" class="form-label">City<span class="star">*</span></label>
+                          <input type="text" class="form-control" id="city" name="city" required>
+                          </div>
+                          <div class="mb-3">
+                          <label for="state" class="form-label">State<span class="star">*</span></label>
+                          <input type="text" class="form-control" id="state" name="state" required>
+                          </div>
+                          <div class="mb-3">
+                          <label for="country" class="form-label">Country<span class="star">*</span></label>
+                          <input type="text" class="form-control" id="country" name="country" required>
+                          </div>
+                          <div class="mb-3">
+                          <label for="pincode" class="form-label">Pincode<span class="star">*</span></label>
+                          <input type="text" class="form-control" id="pincode" name="pincode" pattern="\d{6}" title="Enter a valid 6-digit pincode" required>
+                          </div>
+                          
+                          <button type="submit" class="btn btn-primary w-100" name="post_Job">Post Job</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+     
+
+
+      <?php
+      }
+    ?>
+      
+      <?php
+    // } else { ?>
+     
+    <?php
+    }
+} catch (Exception $e) {
+    // Handle general errors
+    error_log("Error: " . $e->getMessage());
+    $_SESSION['status_title'] = "Error!";
+    $_SESSION['status'] = "An unexpected error occurred.";
+    $_SESSION['status_code'] = "error";
+    header("Location: ../");
+    exit();
+}
+?>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const registrationModal = document.getElementById('registrationModal');
+  const jobSeekerTab = document.getElementById('job-seeker-tab');
+  const employerTab = document.getElementById('employer-tab');
+
+  // Add event listeners to the buttons
+  document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
+    button.addEventListener('click', () => {
+      const targetTab = button.getAttribute('data-tab');
+
+      // Show the correct tab when the modal opens
+      if (targetTab === 'job-seeker') {
+        jobSeekerTab.click();
+      } else if (targetTab === 'employer') {
+        employerTab.click();
+      }
+    });
+  });
+});
+</script>
+

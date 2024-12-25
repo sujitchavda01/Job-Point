@@ -1,4 +1,14 @@
 <?php
+// Set secure session cookie parameters before starting the session
+session_set_cookie_params([
+    'lifetime' => 0, // Session expires when the browser is closed
+    'path' => '/',
+    'domain' => $_SERVER['HTTP_HOST'],
+    'secure' => true, // Requires HTTPS
+    'httponly' => true, // Prevents JavaScript access
+    'samesite' => 'Strict' // Prevents cross-site requests
+]);
+
 session_start(); // Start the session
 
 // Enable error reporting for debugging (remove in production)
@@ -6,82 +16,83 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 try {
-    // Include the database configuration file
-    require '../DB Connection/config.php'; // Ensure this path is correct
+    require '../DB Connection/config.php';
 
-    // Check if the form was submitted
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_user'])) {
-        // Sanitize and validate input
         $loginIdentifier = trim($_POST['loginIdentifier']);
         $loginPassword = $_POST['loginPassword'];
 
-        // Prepare the SQL statement to prevent SQL injection
         $stmt = $conn->prepare("SELECT user_id, user_type, password FROM users WHERE email = ? OR contact_no = ?");
-        $stmt->bind_param("ss", $loginIdentifier, $loginIdentifier); // Bind parameters for email and contact number
+        $stmt->bind_param("ss", $loginIdentifier, $loginIdentifier);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows === 1) {
-            // Fetch user data
             $stmt->bind_result($user_id, $user_type, $hashed_password);
             $stmt->fetch();
 
-            // Verify the password
             if (password_verify($loginPassword, $hashed_password)) {
-                // Successful login
-                session_regenerate_id(true); // Regenerate session ID
-                $_SESSION['user_id'] = $user_id; // Store user ID in session
-                $_SESSION['user_type'] = $user_type; // Store user type in session
+                session_regenerate_id(true); // Regenerate session ID to prevent fixation attacks
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_type'] = $user_type;
 
                 // Redirect based on user type
-                if ($user_type === 'Employer' || $user_type === 'Employer Organization') {
-                    header("Location: ../Employer/Employer.php"); // Redirect to employee dashboard
+                if ($user_type === 'Employer Individual' || $user_type === 'Employer Organization') {
+                    $_SESSION['status_title'] = "Welcome, Employer!";
+                    $_SESSION['status'] = "You Are Logged In. Find The Right Job Seeker Now.";
+                    $_SESSION['status_code'] = "success";
+                    $redirect_url = "../Employer/Employer.php";
                 } else {
-                    header("Location: ../JobSeeker/Job_Seeker.php"); // Redirect to a default dashboard
+                    $_SESSION['status_title'] = "Welcome, Job Seeker!";
+                    $_SESSION['status'] = "You're Logged In. Start Your job Search Now!";
+                    $_SESSION['status_code'] = "success";
+                    $redirect_url = "../JobSeeker/Job_Seeker.php";
                 }
-                exit(); // Make sure to exit after redirect
+                
+                header("Location: $redirect_url");
+                exit();
+                
+                
             } else {
-                // Invalid password
+                sleep(1); // Delay to mitigate brute force attacks
                 $_SESSION['status_title'] = "Error!";
                 $_SESSION['status'] = "Invalid password.";
                 $_SESSION['status_code'] = "error";
-                header("Location: ../"); // Redirect back to login page
+                header("Location: ../");
                 exit();
             }
         } else {
-            // No user found
+            sleep(1); // Delay to mitigate brute force attacks
             $_SESSION['status_title'] = "Error!";
             $_SESSION['status'] = "No user found with that email or mobile number.";
             $_SESSION['status_code'] = "error";
-            header("Location: ../"); // Redirect back to login page
+            header("Location: ../");
             exit();
         }
 
-        // Close statement
         $stmt->close();
     } else {
-        // Redirect back to login page if not a POST request
+        $_SESSION['status_title'] = "😑 Sorry 😑";
+        $_SESSION['status'] = "Unauthorized Access Attempt Detected";
+        $_SESSION['status_code'] = "error";
         header("Location: ../");
         exit();
     }
 } catch (mysqli_sql_exception $e) {
-    // Handle database-related errors
     error_log("Database error: " . $e->getMessage());
     $_SESSION['status_title'] = "Error!";
-    $_SESSION['status'] = "A database error occurred: " . $e->getMessage(); // Include the error message
+    $_SESSION['status'] = "A database error occurred.";
     $_SESSION['status_code'] = "error";
-    header("Location: ../"); // Redirect back to login page
+    header("Location: ../");
     exit();
 } catch (Exception $e) {
-    // Handle general errors
     error_log("General error: " . $e->getMessage());
     $_SESSION['status_title'] = "Error!";
-    $_SESSION['status'] = "An error occurred: " . $e->getMessage(); // Include the error message
+    $_SESSION['status'] = "An unexpected error occurred.";
     $_SESSION['status_code'] = "error";
-    header("Location: ../"); // Redirect back to login page
+    header("Location: ../");
     exit();
 } finally {
-    // Close the database connection
     $conn->close();
 }
 ?>

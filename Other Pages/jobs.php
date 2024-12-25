@@ -1,4 +1,4 @@
-<?php include 'base other/header.php'; ?>  
+<?php include '../base other/header.php'; ?> 
 
 <!-- <link rel="stylesheet" href="../css/style.css"> -->
 
@@ -72,4 +72,6 @@
 
 
 
-<?php include 'base other/footer.php'; ?>
+
+
+<?php include '../base other/footer.php'; ?>
