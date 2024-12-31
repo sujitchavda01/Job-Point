@@ -44,7 +44,7 @@ try {
                 $address_id = $conn->insert_id; // Get the last inserted address ID
 
                 // Insert into `users` table
-                $insert_user = "INSERT INTO users (user_type, email, password, contact_no) VALUES ('Employer Organization', '$email', '$password', '$company_contact_no')";
+                $insert_user = "INSERT INTO users (user_type, email, password, contact_no) VALUES ('Employer Organization', '$email', '$password', '$$recruiter_contact_no')";
                 if ($conn->query($insert_user) === TRUE) {
                     $user_id = $conn->insert_id; // Get the last inserted user ID
 

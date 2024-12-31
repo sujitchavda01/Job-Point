@@ -3,7 +3,10 @@ session_start(); // Start the session
 
 try {
     require '../DB Connection/config.php'; // Include the database config file
+    
+    
 
+    require "../vendor/autoload.php"; 
     // Check the database connection
     if ($conn->connect_error) {
         throw new Exception("Connection failed: " . $conn->connect_error);

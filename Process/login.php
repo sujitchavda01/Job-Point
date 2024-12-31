@@ -41,12 +41,14 @@ try {
                     $_SESSION['status_title'] = "Welcome, Employer!";
                     $_SESSION['status'] = "You Are Logged In. Find The Right Job Seeker Now.";
                     $_SESSION['status_code'] = "success";
-                    $redirect_url = "../Employer/Employer.php";
+                    // $redirect_url = "../Employer/Employer.php";
+                    $redirect_url = "../";
                 } else {
                     $_SESSION['status_title'] = "Welcome, Job Seeker!";
                     $_SESSION['status'] = "You're Logged In. Start Your job Search Now!";
                     $_SESSION['status_code'] = "success";
-                    $redirect_url = "../JobSeeker/Job_Seeker.php";
+                    // $redirect_url = "../JobSeeker/Job_Seeker.php";
+                    $redirect_url = "../";
                 }
                 
                 header("Location: $redirect_url");
