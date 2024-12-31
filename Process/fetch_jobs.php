@@ -10,25 +10,31 @@ $jobsPerPage = isset($_GET['jobsPerPage']) ? (int)$_GET['jobsPerPage'] : 2; // S
 $offset = ($page - 1) * $jobsPerPage;
 
 // Build the SQL query with filters
-$query = "SELECT jp.job_id, jp.featuring_image, jp.job_title, jp.salary, jp.vacancy, jp.application_deadline,
-            jp.job_description, addr.city, addr.state
-            FROM job_posts jp
-            JOIN address addr ON jp.address_id = addr.address_id
-            JOIN users u ON jp.user_id = u.user_id
-            WHERE u.user_type IN ('Employer Individual', 'Employer Organization')";
+$query = "
+    SELECT jp.job_id, jp.featuring_image, jp.job_title, jp.salary, jp.vacancy, jp.application_deadline,
+           jp.job_description, addr.city, addr.state
+    FROM job_posts jp
+    JOIN address addr ON jp.address_id = addr.address_id
+    JOIN users u ON jp.user_id = u.user_id
+    WHERE u.user_type IN ('Employer Individual', 'Employer Organization') 
+      AND jp.vacancy > 0 
+      AND jp.application_deadline > NOW()"; // Filter out expired jobs
 
 if ($location) {
     $query .= " AND addr.city = '" . mysqli_real_escape_string($conn, $location) . "'";
 }
 
-// Remove the category filter if the column does not exist
-if ($category) {
-    // Uncomment this line if you have the category column available
-    // $query .= " AND jp.category = '" . mysqli_real_escape_string($conn, $category) . "'";
-}
+
+// Uncomment this if you have the category column available
+// if ($category) {
+//     $query .= " AND jp.category = '" . mysqli_real_escape_string($conn, $category) . "'";
+// }
 
 // Add limit for pagination
 $query .= " LIMIT $offset, $jobsPerPage";
+
+// Debugging output
+// echo $query; // Uncomment to see the SQL query for debugging
 
 $result = mysqli_query($conn, $query);
 
@@ -36,7 +42,7 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         // Output job cards (similar to your main file)
-        echo '<a href="job_details.php?job_id=' . $row['job_id'] . '" class="text-decoration-none text-dark">';
+        echo '<a href="../Other Pages/job_details.php?job_id=' . $row['job_id'] . '" class="text-decoration-none text-dark">';
         echo '<div class="job-card d-flex align-items-center">';
         echo '<div class="image-container">';
         echo '<img src="../images/post/' . htmlspecialchars($row['featuring_image']) . '" alt="Job Icon">';

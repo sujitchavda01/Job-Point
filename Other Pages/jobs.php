@@ -1,17 +1,45 @@
-<?php include '../base other/header.php'; ?>
-<?php
+<?php include '../base other/header.php';
+// session_start();
 // Database connection
 require '../DB Connection/config.php';
 
-// Initial fetch for job posts to display on page load
-$query = "SELECT jp.job_id, jp.featuring_image, jp.job_title, jp.salary, jp.vacancy, jp.application_deadline,
-            jp.job_description, addr.city, addr.state
-            FROM job_posts jp
-            JOIN address addr ON jp.address_id = addr.address_id
-            JOIN users u ON jp.user_id = u.user_id
-            WHERE u.user_type IN ('Employer Individual', 'Employer Organization')
-            LIMIT 2;"; // Limit initial jobs displayed
+// Fetch top 8 distinct job locations
+$locationsQuery = "
+    SELECT addr.city, COUNT(*) as job_count 
+    FROM job_posts jp
+    JOIN address addr ON jp.address_id = addr.address_id where  jp.vacancy > 0
+      AND jp.application_deadline > NOW()
+    GROUP BY addr.city
+    ORDER BY job_count DESC
+    LIMIT 8;";
+$locationsResult = mysqli_query($conn, $locationsQuery);
+
+// Fetch top 5 distinct job categories based on skills_required
+$categoriesQuery = "
+    SELECT jp.skills_required, COUNT(*) as job_count 
+    FROM job_posts jp where  jp.vacancy > 0
+      AND jp.application_deadline > NOW()
+    GROUP BY jp.skills_required
+    ORDER BY job_count DESC 
+    LIMIT 5;";
+$categoriesResult = mysqli_query($conn, $categoriesQuery);
+
+// Fetch job posts to display on page load, excluding expired applications
+$query = "
+    SELECT jp.job_id, jp.featuring_image, jp.job_title, jp.salary, jp.vacancy, jp.application_deadline,
+           jp.job_description, addr.city, addr.state
+    FROM job_posts jp
+    JOIN address addr ON jp.address_id = addr.address_id
+    JOIN users u ON jp.user_id = u.user_id
+    WHERE u.user_type IN ('Employer Individual', 'Employer Organization') 
+      AND jp.vacancy > 0
+      AND jp.application_deadline > NOW() 
+    LIMIT 2;"; // Limit initial jobs displayed
+
 $result = mysqli_query($conn, $query);
+if (!$result) {
+    die('Query Failed: ' . mysqli_error($conn)); // Debugging: check for SQL errors
+}
 ?>
 
 <section class="hero-banner">
@@ -30,14 +58,11 @@ $result = mysqli_query($conn, $query);
                 <hr/>
                 <ul class="list-unstyled" id="job-location-list">
                     <li data-location="">All Locations</li>
-                    <li data-location="AHMEDABAD">AHMEDABAD</li>
-                    <li data-location="DELHI">DELHI</li>
-                    <li data-location="HYDERABAD">HYDERABAD</li>
-                    <li data-location="INDORE">INDORE</li>
-                    <li data-location="MUMBAI">MUMBAI</li>
-                    <li data-location="PUNE">PUNE</li>
-                    <li data-location="RAJKOT">RAJKOT</li>
-                    <li data-location="SURAT">SURAT</li>
+                    <?php while ($row = mysqli_fetch_assoc($locationsResult)): ?>
+                        <li data-location="<?php echo htmlspecialchars($row['city']); ?>">
+                            <?php echo htmlspecialchars($row['city']); ?>
+                        </li>
+                    <?php endwhile; ?>
                 </ul>
             </div>
 
@@ -47,11 +72,11 @@ $result = mysqli_query($conn, $query);
                 <hr/>
                 <ul class="list-unstyled" id="job-category-list">
                     <li data-category="">All Categories</li>
-                    <li data-category="IT">IT</li>
-                    <li data-category="Finance">Finance</li>
-                    <li data-category="Healthcare">Healthcare</li>
-                    <li data-category="Engineering">Engineering</li>
-                    <li data-category="Marketing">Marketing</li>
+                    <?php while ($row = mysqli_fetch_assoc($categoriesResult)): ?>
+                        <li data-category="<?php echo htmlspecialchars($row['skills_required']); ?>">
+                            <?php echo htmlspecialchars($row['skills_required']); ?>
+                        </li>
+                    <?php endwhile; ?>
                 </ul>
             </div>
         </div>
@@ -150,8 +175,9 @@ $(document).ready(function() {
         $('#job-location-list li').removeClass('selected');
         $(this).addClass('selected');
         const location = $(this).data('location');
+        const category = $('#job-category-list li.selected').data('category') || '';
         currentPage = 1; // Reset current page to 1 on filter change
-        loadJobs(location);
+        loadJobs(location, category);
     });
 
     // Handle click on category
@@ -159,13 +185,16 @@ $(document).ready(function() {
         $('#job-category-list li').removeClass('selected');
         $(this).addClass('selected');
         const category = $(this).data('category');
+        const location = $('#job-location-list li.selected').data('location') || '';
         currentPage = 1; // Reset current page to 1 on filter change
-        loadJobs('', category);
+        loadJobs(location, category);
     });
 
     // Load more jobs
     $('#load-more-btn').on('click', function() {
-        loadJobs('', '', currentPage + 1); // Load next page
+        const location = $('#job-location-list li.selected').data('location') || '';
+        const category = $('#job-category-list li.selected').data('category') || '';
+        loadJobs(location, category, currentPage + 1); // Load next page
     });
 });
 </script>

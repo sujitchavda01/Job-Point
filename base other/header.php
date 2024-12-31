@@ -484,10 +484,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     </li>
                 </ul>
                 <div class="d-flex button-container">
+                    <a href="../JobSeeker/job_apply_history.php" class="btn btn-custom btn-login">
+                        <i class="bi bi-clock-history"></i> Job Application History
+                    </a>
                     <a href="../JobSeeker/account.php" class="btn btn-custom btn-employer">
                         <i class="bi bi-person-square"></i> ACCOUNT
                     </a>
-                    <a href="../Process/logout.php" class="btn btn-custom btn-logout">
+                    <a href="../Process/logout.php" class="btn btn-custom btn-logout" title="Logout">
                         <i class="bi bi-power"></i>
                     </a>
                 </div>
@@ -526,10 +529,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="#" class="btn btn-custom btn-login" data-bs-toggle="modal" data-bs-target="#postJobModal" data-tab="postJobModal">
                         <i class="bi bi-pencil-square"></i> POST A JOB
                     </a>
+                    <a href="../Employer/post_job_history.php" class="btn btn-custom btn-job-seeker" >
+                          <i class="bi bi-pencil-square"></i> POSTED JOBS
+                    </a>
                     <a href="../Employer/employer_individua_account.php" class="btn btn-custom btn-employer">
                         <i class="bi bi-person-square"></i> ACCOUNT
                     </a>
-                    <a href="../Process/logout.php" class="btn btn-custom btn-logout">
+                    <a href="../Process/logout.php" class="btn btn-custom btn-logout" title="Logout">
                         <i class="bi bi-power"></i>
                     </a>
                 </div>
@@ -724,10 +730,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="#" class="btn btn-custom btn-login" data-bs-toggle="modal" data-bs-target="#postJobModal" data-tab="postJobModal">
                       <i class="bi bi-pencil-square"></i> POST A JOB
                     </a>
+                    <a href="../Employer/post_job_history.php" class="btn btn-custom btn-job-seeker" >
+                          <i class="bi bi-pencil-square"></i> POSTED JOBS
+                    </a>
                     <a href="../Employer/employer_organization_account.php" class="btn btn-custom btn-employer" >
                         <i class="bi bi-person-square"></i> ACCOUNT
                     </a>
-                    <a href="../Process/logout.php" class="btn btn-custom btn-logout">
+                    <a href="../Process/logout.php" class="btn btn-custom btn-logout" title="Logout">
                         <i class="bi bi-power"></i>
                     </a>
                 </div>
