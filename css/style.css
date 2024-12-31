@@ -778,7 +778,32 @@
 
 
 
+.image-container {
+    width: 150px; /* Fixed width */
+    height: 150px; /* Fixed height */
+    overflow: hidden; /* Clip overflowing content */
+    position: relative; /* For any absolute positioning */
+    /* background: #f0f0f0;  */
+    border-radius: 10px; /* Rounded corners */
+}
 
+.image-container img {
+    width: 100%; /* Ensure the image's width matches the container */
+    height: 100%; /* Maintain the image's aspect ratio */
+    max-height: 100%; /* Ensure the image does not exceed the height of the container */
+    object-fit: cover; /* Cover the container without stretching the image */
+    object-position: center; /* Center the image in the container */
+    display: block; /* Remove any inline spacing */
+    border-radius: 10px; /* Match the container's rounded corners */
+}
+
+.job-card {
+    transition: box-shadow 0.3s ease; /* Smooth transition for the shadow effect */
+}
+
+.job-card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
+}
 
 
 

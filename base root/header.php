@@ -1,5 +1,35 @@
 <?php
-  session_start();
+    session_start();
+    require 'DB Connection/config.php';
+    $jobQuery = "SELECT COUNT(*) AS total_jobs FROM job_posts";
+    $jobResult = mysqli_query($conn, $jobQuery);
+    if ($jobResult && $row = mysqli_fetch_assoc($jobResult)) {
+        $totalJobs = $row['total_jobs'];
+    }
+
+    // Fetch total members (job seekers + individual employers)
+    $memberQuery = "SELECT 
+                        (SELECT COUNT(*) FROM job_seekers) + 
+                        (SELECT COUNT(*) FROM employers_individual) AS total_members";
+    $memberResult = mysqli_query($conn, $memberQuery);
+    if ($memberResult && $row = mysqli_fetch_assoc($memberResult)) {
+        $totalMembers = $row['total_members'];
+    }
+
+    // Fetch total companies
+    $companyQuery = "SELECT COUNT(*) AS total_companies FROM employers_organization";
+    $companyResult = mysqli_query($conn, $companyQuery);
+    if ($companyResult && $row = mysqli_fetch_assoc($companyResult)) {
+        $totalCompanies = $row['total_companies'];
+    }
+
+    // Fetch total cities
+    $cityQuery = "SELECT COUNT(DISTINCT city) AS total_cities FROM address";
+    $cityResult = mysqli_query($conn, $cityQuery);
+    if ($cityResult && $row = mysqli_fetch_assoc($cityResult)) {
+        $totalCities = $row['total_cities'];
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +58,7 @@ try {
     ?>
       <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
           <div class="container-fluid">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="/Job Point">
                   <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -444,7 +474,7 @@ try {
         ?>
         <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
           <div class="container-fluid">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="/Job Point">
                   <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -483,7 +513,7 @@ try {
 
       <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
           <div class="container-fluid">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="/Job Point">
                   <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -681,7 +711,7 @@ try {
 
       <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
           <div class="container-fluid">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="/Job Point">
                   <img src="images/website/logo.png" alt="Job Point Logo" class="mainlogo">
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

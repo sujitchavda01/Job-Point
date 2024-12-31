@@ -16,22 +16,22 @@
 <section class="feature-section">
     <div class="feature">
         <i class="bi bi-briefcase-fill"></i>
-        <p class="number" data-target="5000">0</p>
+        <p class="number" data-target="<?php echo $totalJobs; ?>">0</p>
         <p>JOBS POSTED</p>
     </div>
     <div class="feature">
         <i class="bi bi-person-fill"></i>
-        <p class="number" data-target="50000">0</p>
+        <p class="number" data-target="<?php echo $totalMembers; ?>">0</p>
         <p>MEMBERS</p>
     </div>
     <div class="feature">
         <i class="bi bi-building"></i>
-        <p class="number" data-target="200">0</p>
+        <p class="number" data-target="<?php echo $totalCompanies; ?>">0</p>
         <p>COMPANIES</p>
     </div>
     <div class="feature">
         <i class="bi bi-globe"></i>
-        <p class="number" data-target="200">0</p>
+        <p class="number" data-target="<?php echo $totalCities; ?>">0</p>
         <p>CITIES</p>
     </div>
 </section>

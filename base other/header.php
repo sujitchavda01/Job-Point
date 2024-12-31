@@ -27,8 +27,8 @@ try {
     ?>
       <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="../images/website/logo.png" alt="Job Point Logo" height="70">
+            <a class="navbar-brand" href="../">
+                <img src="../images/website/logo.png" alt="Job Point Logo" height="70" class="mainlogo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ?>
       <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="../">
                 <img src="../images/website/logo.png" alt="Job Point Logo" class="mainlogo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -501,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="../">
                 <img src="../images/website/logo.png" alt="Job Point Logo" class="mainlogo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -699,7 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary heronavbar sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="../">
                 <img src="../images/website/logo.png" alt="Job Point Logo" class="mainlogo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
