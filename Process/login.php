@@ -1,13 +1,13 @@
 <?php
 // Set secure session cookie parameters before starting the session
-session_set_cookie_params([
-    'lifetime' => 0, // Session expires when the browser is closed
-    'path' => '/',
-    'domain' => $_SERVER['HTTP_HOST'],
-    'secure' => true, // Requires HTTPS
-    'httponly' => true, // Prevents JavaScript access
-    'samesite' => 'Strict' // Prevents cross-site requests
-]);
+// session_set_cookie_params([
+//     'lifetime' => 0,
+//     'path' => '/',
+//     'domain' => $_SERVER['HTTP_HOST'],
+//     'secure' => true, 
+//     'httponly' => true,
+//     'samesite' => 'Strict'
+// ]);
 
 session_start(); // Start the session
 

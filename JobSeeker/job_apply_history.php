@@ -71,7 +71,7 @@ try {
             <p>No applications found. Start applying for jobs today!</p>
         <?php else : ?>
             <table class="table table-bordered">
-                <thead>
+                <thead  class="text-center">
                     <tr>
                         <th>#</th>
                         <th>Job Title</th>
@@ -81,9 +81,10 @@ try {
                         <th>Salary</th>
                         <th>Deadline</th>
                         <th>Status</th>
+                        <th>Withdraw Application</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody  class="text-center">
                     <?php foreach ($applications as $index => $application) : ?>
                         <tr>
                             <td><?php echo $index + 1; ?></td>
@@ -108,6 +109,22 @@ try {
                             </td>
                             <td>
                                 <?php echo htmlspecialchars($application['status'] ?? 'Pending'); ?>
+                            </td>
+                            <td>
+                                <?php
+                                    if(!($application['status']==='Approved') and !($application['status']==='Done')){
+                                ?>
+                                    <a href="applicants.php?job_id=" class="btn btn-danger me-2">
+                                        <i class="bi bi-x-circle"></i> Cancel Job Application
+                                    </a>
+                                <?php
+                                    }else{?>
+                                        <a href="#" class="btn border me-2" style="background-color:#cf576b;color:white;" Title="You can't Withdraw Application Because Your work is Already Assign And Approved By Employer">
+                                            <i class="bi bi-x-circle"></i> Cancel Job Application
+                                        </a>
+                                    <?php    
+                                    }
+                                ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
