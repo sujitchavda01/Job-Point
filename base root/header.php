@@ -542,7 +542,7 @@ try {
                           <i class="bi bi-pencil-square"></i> POST A JOB
                       </a>
                       <a href="Employer/post_job_history.php" class="btn btn-custom btn-job-seeker" >
-                          <i class="bi bi-pencil-square"></i> POSTED JOBS
+                        <i class="bi bi-card-heading"></i> POSTED JOBS
                       </a>
                       <a href="Employer/employer_individua_account.php" class="btn btn-custom btn-employer">
                           <i class="bi bi-person-square"></i> ACCOUNT
@@ -743,7 +743,7 @@ try {
                         <i class="bi bi-pencil-square"></i> POST A JOB
                       </a>
                       <a href="Employer/post_job_history.php" class="btn btn-custom btn-job-seeker" >
-                          <i class="bi bi-pencil-square"></i> POSTED JOBS
+                        <i class="bi bi-card-heading"></i> POSTED JOBS
                       </a>
                       <a href="Employer/employer_organization_account.php" class="btn btn-custom btn-employer">
                           <i class="bi bi-person-square"></i> ACCOUNT

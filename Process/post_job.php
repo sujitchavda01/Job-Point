@@ -30,25 +30,25 @@ try {
     $conn->begin_transaction();
 
     // Input sanitization
-    $JobTitle = toPascalCase(filter_input(INPUT_POST, 'job_title', FILTER_SANITIZE_STRING));
-    $JobType = toPascalCase(filter_input(INPUT_POST, 'job_type', FILTER_SANITIZE_STRING));
-    $JobMode = toPascalCase(filter_input(INPUT_POST, 'job_mode', FILTER_SANITIZE_STRING));
-    $JobDescription = toPascalCase(filter_input(INPUT_POST, 'job_description', FILTER_SANITIZE_STRING));
-    $RequiredQualification = toPascalCase(filter_input(INPUT_POST, 'education', FILTER_SANITIZE_STRING));
-    $SkillsRequired = toPascalCase(filter_input(INPUT_POST, 'serviceType', FILTER_SANITIZE_STRING));
-    $ApplicationDeadlineDate = filter_input(INPUT_POST, 'application_deadline_date', FILTER_SANITIZE_STRING);
-    $ApplicationDeadlineTime = filter_input(INPUT_POST, 'application_deadline_time', FILTER_SANITIZE_STRING);
-    $Vacancy = filter_input(INPUT_POST, 'vacancy', FILTER_VALIDATE_INT);
+    $JobTitle = toPascalCase( 'job_title');
+    $JobType = toPascalCase( 'job_type');
+    $JobMode = toPascalCase( 'job_mode');
+    $JobDescription = toPascalCase( 'job_description');
+    $RequiredQualification = toPascalCase( 'education');
+    $SkillsRequired = toPascalCase( 'serviceType');
+    $ApplicationDeadlineDate =  'application_deadline_date';
+    $ApplicationDeadlineTime =  'application_deadline_time';
+    $Vacancy =  'vacancy';
     $PostDate = date('Y-m-d H:i:s'); // Capture the current date and time
-    $Salary = filter_input(INPUT_POST, 'salary', FILTER_VALIDATE_FLOAT);
+    $Salary =  'salary';
 
     // Address details
-    $Building = toPascalCase(filter_input(INPUT_POST, 'building', FILTER_SANITIZE_STRING));
-    $Street = toPascalCase(filter_input(INPUT_POST, 'street', FILTER_SANITIZE_STRING));
-    $City = toPascalCase(filter_input(INPUT_POST, 'city', FILTER_SANITIZE_STRING));
-    $State = toPascalCase(filter_input(INPUT_POST, 'state', FILTER_SANITIZE_STRING));
-    $Country = toPascalCase(filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING));
-    $Pincode = filter_input(INPUT_POST, 'pincode', FILTER_SANITIZE_STRING);
+    $Building = toPascalCase( 'building');
+    $Street = toPascalCase( 'street');
+    $City = toPascalCase( 'city');
+    $State = toPascalCase( 'state');
+    $Country = toPascalCase( 'country');
+    $Pincode =  'pincode';
 
     // Insert Address
     $AddressSql = "INSERT INTO address (building, street, city, state, country, pincode) VALUES (?, ?, ?, ?, ?, ?)";
@@ -59,13 +59,13 @@ try {
         throw new Exception("Error inserting address: " . $AddressStmt->error);
     }
     
-    $AddressId = $AddressStmt->insert_id; // Get the inserted address ID
+    $AddressId = $AddressStmt->insert_id; 
     $AddressStmt->close();
 
-    // Combine date and time for application deadline
+    
     $ApplicationDeadline = $ApplicationDeadlineDate . ' ' . $ApplicationDeadlineTime;
 
-    // Insert Job Post
+    
     $JobSql = "INSERT INTO job_posts (job_title, job_type, job_mode, job_description, required_qualification, skills_required, application_deadline, vacancy, post_date, salary, user_id, address_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $JobStmt = $conn->prepare($JobSql);
     $JobStmt->bind_param("sssssssisdii", $JobTitle, $JobType, $JobMode, $JobDescription, $RequiredQualification, $SkillsRequired, $ApplicationDeadline, $Vacancy, $PostDate, $Salary, $UserId, $AddressId);

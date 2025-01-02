@@ -109,13 +109,13 @@ if (!$result) {
                                     <div class="text-muted">
                                         <small>Location: <?php echo htmlspecialchars($row['city'] . ', ' . $row['state']); ?></small>
                                     </div>
-                                    <p class="job-description text-muted">
-                                        <small>Job Description:
+                                    <div class="job-description" style="overflow: hidden;">
+                                        <p>Job Description:
                                         <?php
                                         // Display only the starting portion of the job description
-                                        echo htmlspecialchars(substr($row['job_description'], 0, 70)) . '...<u>more</u>';
-                                        ?></small>
-                                    </p>
+                                        echo htmlspecialchars(substr($row['job_description'], 0, 70)) . '...';
+                                        ?></p>
+                                    </div>
                                 </div>
                             </div>
                         </a>

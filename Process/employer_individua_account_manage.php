@@ -100,7 +100,10 @@ try {
         $conn->autocommit(true);
 
         // Delete old photo if a new one was uploaded
-        if ($profile_photo !== $existing_data['profile_photo'] && file_exists($old_photo_path)) {
+        // if ($profile_photo !== $existing_data['profile_photo'] && file_exists($old_photo_path)) {
+        //     unlink($old_photo_path);
+        // }
+        if ($profile_photo !== 'default profile photo.png' && $new_profile_photo !== $profile_photo && file_exists($old_photo_path)) {
             unlink($old_photo_path);
         }
 

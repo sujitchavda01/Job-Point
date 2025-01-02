@@ -85,8 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ea_update_profile']))
 
         if (isset($_FILES['profile_photo']) && $_FILES['profile_photo']['error'] === UPLOAD_ERR_OK) {
             // Delete old profile photo if it exists
-            if (file_exists($old_profile_path) && !empty($old_profile_photo)) {
-                unlink($old_profile_path);
+            // if (file_exists($old_profile_path) && !empty($old_profile_photo)) {
+            //     unlink($old_profile_path);
+            // }
+            if ($profile_photo !== 'default profile photo.png' && $new_profile_photo !== $profile_photo && file_exists($old_photo_path)) {
+                unlink($old_photo_path);
             }
 
             // Process new profile photo

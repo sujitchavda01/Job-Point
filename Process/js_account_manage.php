@@ -180,8 +180,8 @@ try {
             $conn->autocommit(true);
 
             // Delete old photo if a new one was uploaded
-            if ($new_profile_photo !== $profile_photo && file_exists($old_photo_path)) {
-                unlink($old_photo_path); // Delete old photo
+            if ($profile_photo !== 'default profile photo.png' && $new_profile_photo !== $profile_photo && file_exists($old_photo_path)) {
+                unlink($old_photo_path);
             }
 
             // Delete old resume if a new one was uploaded

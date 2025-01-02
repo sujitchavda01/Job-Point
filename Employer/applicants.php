@@ -1,8 +1,15 @@
 <?php
-ob_start();
-
-// Include necessary files
+ob_start(); // Ensure the session is started
 include '../base other/header.php';
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type'])) {
+    $_SESSION['status_title'] = "😔 Sorry 😔";
+    $_SESSION['status'] = "You must log in to access this page.";
+    $_SESSION['status_code'] = "error";
+    header("Location: http://localhost/Job%20Point/");
+    exit;
+}
+// Include necessary files
+
 require '../DB Connection/config.php';
 require "../vendor/autoload.php"; 
 
@@ -224,10 +231,11 @@ function sendEmailNotification($conn, $applicationId, $jobId, $status) {
     $subject2 = "Applicant Status Update";
     $body2 = "Hello,<br>You have updated the application status for Job ID: $jobId. The status has been " . ($status === "approved" ? "approved" : "rejected") . ".<br>";
     $body2 .= "<br>To view the application details, click the button below:<br>";
-    $body2 .= '<form action="http://localhost/Job%20Point/Process/verify job seeker.php" method="POST"> style="display: inline-block;">';
-    $body2 .= '<input type="hidden" name="job_id" value="' .$jobId.'">';
-    $body2 .= '<button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">View Application</button>';
-    $body2 .= '</form>';
+    $body2 .= '<a href="http://localhost/Job%20Point/Process/verify_job_seeker.php?job_id=' . urlencode($jobId) . '" style="display: inline-block; text-decoration: none;">';
+    $body2 .= '<button type="button" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">View Application</button>';
+    $body2 .= '</a>';
+    
+        
         
     $body2 .= "<br>Best regards,<br>Your Company";
 
@@ -346,7 +354,7 @@ function decrementVacancyCount($conn, $jobId) {
                                 </div>
 
                                 <h5 class="card-title"><?php echo htmlspecialchars($applicant['applicant_name']); ?></h5>
-                                <p class="rating">
+                                <!-- <p class="rating">
                                     Rating: <?php echo is_numeric($applicant['rating']) ? $applicant['rating'] . " / 5" : $applicant['rating']; ?>
                                     <span class="stars">
                                         <?php if (is_numeric($applicant['rating'])): ?>
@@ -355,16 +363,16 @@ function decrementVacancyCount($conn, $jobId) {
                                             <?php endfor; ?>
                                         <?php endif; ?>
                                     </span>
-                                </p>
+                                </p> -->
 
                             </div>
                             <div class="info p-0">
                                 
                                 <p class="">Email: <?php echo htmlspecialchars($applicant['applicant_email']); ?></p>
-                                <p class="">Status: <?php echo htmlspecialchars($applicant['application_status']); ?></p>
+                                <p class="">Job Status: <?php echo htmlspecialchars($applicant['application_status']); ?></p>
                             </div>
                             <div class="view-profile mb-2 text-center">
-                                <a href="job_seeker_profile.php?seeker_id=<?php echo htmlspecialchars($applicant['seeker_id']); ?>" 
+                                <a href="../Other Pages/view_job_seeker_profile.php?seeker_id=<?php echo htmlspecialchars($applicant['seeker_id']); ?>" 
                                 class="btn btn-custom btn-job-seeker" 
                                 style="text-align: center; display: inline-block; width: 100%;">
                                     View Profile

@@ -6,13 +6,27 @@ require '../DB Connection/config.php';
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Database connection failed: " . $conn->connect_error);
 }
+$jobId = (int)$_POST['job_id'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Validate and retrieve query parameters
+    if (!isset($_POST['job_id']) || !isset($_POST['verification_code']) || empty($_POST['job_id']) || empty($_POST['verification_code'])) {
+        $jobId = isset($_POST['job_id']) ? $_POST['job_id'] : null;
+        $_SESSION['status_title'] = "❌ Error ❌";
+        $_SESSION['status'] = "Missing job ID or verification code.";
+        $_SESSION['status_code'] = "error";
+        $redirectUrl = "http://localhost/Job%20Point/Process/verify_job_seeker.php";
+        if ($jobId) {
+            $redirectUrl .= "?job_id=" . urlencode($jobId);
+        }
+        header("Location: $redirectUrl");
+        exit();
+    }
 
-// Check if the form was submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $jobId = (int)$_POST['job_id'];
-    $verificationCode = $_POST['verification_code'];
+    // Sanitize input
+    
+    $verificationCode = htmlspecialchars($_POST['verification_code'], ENT_QUOTES, 'UTF-8');
 
     // Fetch the job application using job_id and verify the code
     $query = "
@@ -23,6 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ";
 
     $stmt = $conn->prepare($query);
+    if ($stmt === false) {
+        die("Error preparing statement: " . $conn->error);
+    }
+
     $stmt->bind_param("is", $jobId, $verificationCode);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -45,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $updateSeekerStmt->bind_param("i", $seekerId);
         $updateSeekerStmt->execute();
 
-        // Set success message
         $_SESSION['status_title'] = "✔ Success ✔";
         $_SESSION['status'] = "Verification code is correct. Job application status updated.";
         $_SESSION['status_code'] = "success";
@@ -55,12 +72,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['status_title'] = "❌ Error ❌";
         $_SESSION['status'] = "The verification code is incorrect.";
         $_SESSION['status_code'] = "error";
+        header("Location: http://localhost/Job%20Point/Process/verify_job_seeker.php?job_id=" . urlencode($jobId));
     }
 
-    // Redirect back to the verification page or desired location
-    header("Location:http://localhost/Job%20Point/Process/verify job seeker.php");
     exit();
+} else {
+    $_SESSION['status_title'] = "❌ Error ❌";
+    $_SESSION['status'] = "Something went wrong.";
+    $_SESSION['status_code'] = "error";
+    header("Location: http://localhost/Job%20Point/Process/verify_job_seeker.php?job_id=$jobId");
 }
 
 ob_end_flush();
-?>

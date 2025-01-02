@@ -7,14 +7,14 @@ include '../base other/header.php'; // Include your header file
 require '../DB Connection/config.php';
 
 // Check if the user is logged in
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type'])) {
     $_SESSION['status_title'] = "❌ Error ❌";
     $_SESSION['status'] = "You must be logged in to view this page.";
     $_SESSION['status_code'] = "error";
-    header("Location: ../login.php"); // Redirect to login if not logged in
+    header("Location: http://localhost/Job%20Point/"); // Redirect to login if not logged in
     exit();
 }
-
+else{
 $userId = $_SESSION['user_id'];
 
 try {
@@ -109,6 +109,6 @@ try {
     <?php endforeach; ?>
 </div>
 
-<?php include '../base other/footer.php'; ?>
+<?php include '../base other/footer.php'; }?>
 
 <?php ob_end_flush(); // End output buffering and flush output ?>

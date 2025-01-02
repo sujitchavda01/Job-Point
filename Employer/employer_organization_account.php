@@ -127,7 +127,6 @@ try {
                         <i class="fas fa-camera"></i>
                     </div>
 
-                    <!-- Input for Banner Photo (Hidden) -->
                    
 
                     <!-- Profile Photo Container -->
