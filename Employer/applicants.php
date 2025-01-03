@@ -409,7 +409,7 @@ function sendEmailNotification($conn, $applicationId, $jobId, $status) {
                 </ul>
                 
                 <div class='button-container'>
-                    <a href='http://localhost/Job%20Point/Process/verify_job_seeker.php?job_id=" . urlencode($jobId) . "' class='btn'>Verify Job Seeker</a>
+                    <a href='http://localhost/Job%20Point/Process/verify_job_seeker.php?job_id=" . urlencode($jobId) . "' class='btn' style='color:white;'>Verify Job Seeker</a>
                 </div>
             </div>
             <div class='footer'>

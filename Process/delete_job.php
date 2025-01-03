@@ -35,17 +35,29 @@ try {
     
     $seekerEmails = [];
     while ($row = $result->fetch_assoc()) {
-        // Fetch each seeker's email
+        // Fetch user_id from job_seeker using seeker_id
         $seekerId = $row['seeker_id'];
-        $fetchEmailQuery = "SELECT email FROM users WHERE user_id = ?";
-        $emailStmt = $conn->prepare($fetchEmailQuery);
-        $emailStmt->bind_param("i", $seekerId);
-        $emailStmt->execute();
-        $emailResult = $emailStmt->get_result();
-        if ($emailRow = $emailResult->fetch_assoc()) {
-            $seekerEmails[] = $emailRow['email'];
+        $fetchUserIdQuery = "SELECT user_id FROM job_seeker WHERE seeker_id = ?";
+        $userIdStmt = $conn->prepare($fetchUserIdQuery);
+        $userIdStmt->bind_param("i", $seekerId);
+        $userIdStmt->execute();
+        $userIdResult = $userIdStmt->get_result();
+
+        if ($userRow = $userIdResult->fetch_assoc()) {
+            $fetchedUserId = $userRow['user_id'];
+
+            // Fetch the email from users using user_id
+            $fetchEmailQuery = "SELECT email FROM users WHERE user_id = ?";
+            $emailStmt = $conn->prepare($fetchEmailQuery);
+            $emailStmt->bind_param("i", $fetchedUserId);
+            $emailStmt->execute();
+            $emailResult = $emailStmt->get_result();
+            if ($emailRow = $emailResult->fetch_assoc()) {
+                $seekerEmails[] = $emailRow['email'];
+            }
+            $emailStmt->close();
         }
-        $emailStmt->close();
+        $userIdStmt->close();
     }
 
     // If applications exist, notify all seekers
