@@ -76,7 +76,7 @@ try {
                           <a class="nav-link" href="Other Pages\companies.php">Companies</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">Blog</a>
+                          <a class="nav-link" href="Other Pages/Contact.php">Contact Us</a>
                       </li>
                   </ul>
                   <div class="d-flex button-container">
@@ -492,7 +492,7 @@ try {
                           <a class="nav-link" href="Other Pages/companies.php">Companies</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">Blog</a>
+                          <a class="nav-link" href="Other Pages/Contact.php">Contact Us</a>
                       </li>
                   </ul>
                   <div class="d-flex button-container">
@@ -534,7 +534,7 @@ try {
                           <a class="nav-link" href="Other Pages/companies.php">Companies</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">Blog</a>
+                          <a class="nav-link" href="Other Pages/Contact.php">Contact Us</a>
                       </li>
                   </ul>
                   <div class="d-flex button-container">
@@ -735,7 +735,7 @@ try {
                           <a class="nav-link" href="Other Pages/companies.php">Companies</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">Blog</a>
+                          <a class="nav-link" href="Other Pages/Contact.php">Contact Us</a>
                       </li>
                   </ul>
                   <div class="d-flex button-container">

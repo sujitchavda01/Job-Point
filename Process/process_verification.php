@@ -8,13 +8,13 @@ require '../DB Connection/config.php';
 if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
-$jobId = (int)$_POST['job_id'];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validate and retrieve query parameters
-    if (!isset($_POST['job_id']) || !isset($_POST['verification_code']) || empty($_POST['job_id']) || empty($_POST['verification_code'])) {
+    if (!isset($_POST['job_id'], $_POST['verification_code'], $_POST['rating']) || empty($_POST['job_id']) || empty($_POST['verification_code']) || empty($_POST['rating'])) {
         $jobId = isset($_POST['job_id']) ? $_POST['job_id'] : null;
         $_SESSION['status_title'] = "❌ Error ❌";
-        $_SESSION['status'] = "Missing job ID or verification code.";
+        $_SESSION['status'] = "Missing job ID, verification code, or rating.";
         $_SESSION['status_code'] = "error";
         $redirectUrl = "http://localhost/Job%20Point/Process/verify_job_seeker.php";
         if ($jobId) {
@@ -25,12 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Sanitize input
-    
     $verificationCode = htmlspecialchars($_POST['verification_code'], ENT_QUOTES, 'UTF-8');
+    $rating = (int)$_POST['rating']; // Convert rating to integer
+    $jobId = (int)$_POST['job_id'];
+    $employerId = $_SESSION['user_id']; // Assuming employer ID is stored in session
 
     // Fetch the job application using job_id and verify the code
     $query = "
-        SELECT ja.application_id, ja.verification_code, js.seeker_id 
+        SELECT ja.application_id, ja.verification_code, js.seeker_id, ja.status 
         FROM job_applications ja
         JOIN job_seekers js ON ja.seeker_id = js.seeker_id
         WHERE ja.job_id = ? AND ja.verification_code = ?;
@@ -50,6 +52,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $application = $result->fetch_assoc();
         $applicationId = $application['application_id'];
         $seekerId = $application['seeker_id'];
+        $currentStatus = $application['status'];
+
+        // Check if the job application status is already "Done"
+        if ($currentStatus === 'Done') {
+            $_SESSION['status_title'] = "🔒 Already Verified 🔒";
+            $_SESSION['status'] = "This job seeker has already been verified.";
+            $_SESSION['status_code'] = "info";
+            header("Location: http://localhost/Job%20Point/");
+            exit();
+        }
 
         // Update job application status to "Done"
         $updateApplicationQuery = "UPDATE job_applications SET status = 'Done' WHERE application_id = ?;";
@@ -63,8 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updateSeekerStmt->bind_param("i", $seekerId);
         $updateSeekerStmt->execute();
 
+        // Store feedback in employer_feedback table
+        $insertFeedbackQuery = "INSERT INTO employer_feedback (job_id, seeker_id, employer_id, rating, feedback_date) VALUES (?, ?, ?, ?, NOW());";
+        $insertFeedbackStmt = $conn->prepare($insertFeedbackQuery);
+        $insertFeedbackStmt->bind_param("iiis", $jobId, $seekerId, $employerId, $rating);
+        $insertFeedbackStmt->execute();
+
         $_SESSION['status_title'] = "✔ Success ✔";
-        $_SESSION['status'] = "Verification code is correct. Job application status updated.";
+        $_SESSION['status'] = "Verification code is correct. Job application status updated, and feedback stored.";
         $_SESSION['status_code'] = "success";
         header("Location: http://localhost/Job%20Point/");
     } else {

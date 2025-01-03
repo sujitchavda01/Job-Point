@@ -98,7 +98,7 @@ try {
                     <a href="applicants.php?job_id=<?php echo $job['job_id']; ?>" class="btn btn-primary me-2">
                         <i class="bi bi-person-vcard"></i> View Applicants
                     </a>
-                    <a href="delete_job.php?job_id=<?php echo $job['job_id']; ?>" class="btn btn-danger">
+                    <a href="../Process/delete_job.php?job_id=<?php echo $job['job_id']; ?>" class="btn btn-danger">
                         <i class="bi bi-trash3-fill"></i> Delete Post
                     </a>
                 </div>

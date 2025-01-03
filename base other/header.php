@@ -45,7 +45,7 @@ try {
                         <a class="nav-link" href="companies.php">Companies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="../Other Pages/Contact.php">Contact Us</a>
                     </li>
                 </ul>
                 <div class="d-flex button-container">
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               </div>
               <div id="individualFields" style="display: none;">
-                <form action="../Process/register_employer.php" method="post">
+                <form action="..../Process/employer_register.php" method="post">
                     <div class="mb-3">
                     <label for="first_name" class="form-label">First Name<span class="star">*</span></label>
                     <input type="text" class="form-control" id="first_name" name="first_name" pattern="[A-Za-z]+" title="Only alphabets are allowed." required>
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
               </form>
               <div id="organizationFields" style="display: none;">
-              <form action="../Process/register_employer.php" method="post">
+              <form action="../Process/employer_register.php" method="post">
                     <div class="mb-3">
                         <label for="company_name" class="form-label">Company Name<span class="star">*</span></label>
                         <input type="text" class="form-control" id="company_name" name="company_name"  required>
@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a class="nav-link" href="../Other Pages/companies.php">Companies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="../Other Pages/Contact.php">Contact Us</a>
                     </li>
                 </ul>
                 <div class="d-flex button-container">
@@ -522,7 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a class="nav-link" href="../Other Pages/companies.php">Companies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="../Other Pages/Contact.php">Contact Us</a>
                     </li>
                 </ul>
                 <div class="d-flex button-container">
@@ -723,7 +723,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a class="nav-link" href="../Other Pages/companies.php">Companies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="../Other Pages/Contact.php">Contact Us</a>
                     </li>
                 </ul>
                 <div class="d-flex button-container">

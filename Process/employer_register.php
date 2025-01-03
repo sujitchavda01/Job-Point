@@ -71,14 +71,14 @@ try {
             }
         } elseif (isset($_POST['register_individual'])) {
             // Handling Individual Registration
-            $first_name = toPascalCase(trim($_POST['first_name']));
-            $middle_name = toPascalCase(trim($_POST['middle_name']));
-            $last_name = toPascalCase(trim($_POST['last_name']));
-            $building = toPascalCase(($_POST['building']));
-            $street = toPascalCase(($_POST['street']));
-            $city = toPascalCase(trim($_POST['city']));
-            $state = toPascalCase(trim($_POST['state']));
-            $country = toPascalCase(trim($_POST['country']));
+            $first_name = toPascalCase($_POST['first_name']);
+            $middle_name = toPascalCase($_POST['middle_name']);
+            $last_name = toPascalCase($_POST['last_name']);
+            $building = toPascalCase($_POST['building']);
+            $street = toPascalCase($_POST['street']);
+            $city = toPascalCase($_POST['city']);
+            $state = toPascalCase($_POST['state']);
+            $country = toPascalCase($_POST['country']);
             $pincode = trim($_POST['pincode']);
             $email = trim($_POST['email']);
             $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT); // Hash the password

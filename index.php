@@ -1,4 +1,14 @@
-<?php include 'base root/header.php'; ?>  
+<?php include 'base root/header.php';
+include 'DB Connection/config.php';
+
+// Fetch the latest jobs from the database
+$sql = "SELECT * 
+        FROM `job_posts`
+        ORDER BY `post_date` DESC 
+        LIMIT 3";
+$result = $conn->query($sql);
+// echo $result;
+?>  
 
 <div class="hero-section">
     <div class="container">
@@ -110,42 +120,32 @@
 <div class="row">
     <div class="col-lg-8">
         <h3 class="mb-4">Latest Jobs</h3>
-        <div class="job-card d-flex align-items-center">
-            <img src="images\post\1.png" alt="Job Icon">
-            <div class="ms-3 w-100">
-                <h5>Support Staff Required for Call Center</h5>
-                <div class="job-info">
-                    <span>Salary: 5k to 15k</span>
-                    <span>Positions: 4</span>
-                    <span>Application Deadline: October 31, 2022</span>
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <a href="Other Pages/job_details.php?job_id=<?php echo $row['job_id']; ?>" class="text-decoration-none text-dark">
+                <div class="job-card d-flex align-items-center">
+                    <img src="images/post/<?php echo htmlspecialchars($row['featuring_image']); ?>" alt="Job Icon">
+                    <div class="ms-3 w-100">
+                        <h5><?php echo htmlspecialchars($row['job_title']); ?></h5>
+                        <div class="job-info">
+                            <span>Salary:  <?php echo htmlspecialchars($row['salary']); ?></span>
+                            <span>Positions: <?php echo htmlspecialchars($row['vacancy']); ?></span>
+                            <span>Application Deadline: 
+                                <?php 
+                                    $date = new DateTime($row['application_deadline']);
+                                    echo $date->format('d-m-Y h:i A'); 
+                                ?>
+                            </span>
+                        </div>
+                        <button class="btn btn-apply mt-2 ms-auto d-block">Apply For Job</button>
+                    </div>
                 </div>
-                <button class="btn btn-apply mt-2 ms-auto d-block">Apply For Job</button>
-            </div>
-        </div>
-        <div class="job-card d-flex align-items-center">
-            <img src="images\post\2.png" alt="Job Icon">
-            <div class="ms-3 w-100">
-                <h5>SQA Engineer/Project Coordinator</h5>
-                <div class="job-info">
-                    <span>Salary: 15k to 35k</span>
-                    <span>Positions: 4</span>
-                    <span>Application Deadline: November 1, 2022</span>
-                </div>
-                <button class="btn btn-apply mt-2 ms-auto d-block">Apply For Job</button>
-            </div>
-        </div>
-        <div class="job-card d-flex align-items-center">
-            <img src="images\post\3.png" alt="Job Icon">
-            <div class="ms-3 w-100">
-                <h5>Research Analyst / Academic Writer</h5>
-                <div class="job-info">
-                    <span>Salary: 15k to 25k</span>
-                    <span>Positions: 4</span>
-                    <span>Application Deadline: November 1, 2022</span>
-                </div>
-                <button class="btn btn-apply mt-2 ms-auto d-block">Apply For Job</button>
-            </div>
-        </div>
+                </a>
+            <?php endwhile; ?>
+            <?php else: ?>
+            <p>No jobs available at the moment.</p>
+        <?php endif; ?>
+        
     </div>
 
     <div class="col-lg-4">

@@ -26,9 +26,10 @@ if ($location) {
 
 
 // Uncomment this if you have the category column available
-// if ($category) {
-//     $query .= " AND jp.category = '" . mysqli_real_escape_string($conn, $category) . "'";
-// }
+if ($category) {
+    $query .= " AND jp.skills_required = '" . mysqli_real_escape_string($conn, $category) . "'";
+}
+
 
 // Add limit for pagination
 $query .= " LIMIT $offset, $jobsPerPage";
