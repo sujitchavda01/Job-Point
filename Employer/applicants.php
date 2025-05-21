@@ -321,9 +321,9 @@ function sendEmailNotification($conn, $applicationId, $jobId, $status) {
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
-    $mail->Username = "sujitchavda01@gmail.com"; // Your email
-    $mail->Password = "gwkszfmuwzstrwxu"; // Your email password
-    $mail->setFrom("sujitchavda01@gmail.com", "Job Point"); 
+    $mail->Username = " "; // Your email
+    $mail->Password = ""; // Your email password
+    $mail->setFrom(" ", "Job Point"); 
     $mail->addAddress($to);
     $mail->Subject = $subject;
     $mail->Body = $body;
