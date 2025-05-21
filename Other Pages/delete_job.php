@@ -103,9 +103,9 @@ function sendEmail($to, $subject, $body) {
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-        $mail->Username = "sujitchavda01@gmail.com"; // Your email
-        $mail->Password = "gwkszfmuwzstrwxu"; // Your email password
-        $mail->setFrom("sujitchavda01@gmail.com", "Job Point"); // Your company name
+        $mail->Username = ""; // Your email
+        $mail->Password = ""; // Your email password
+        $mail->setFrom("", "Job Point"); // Your company name
         $mail->addAddress($to);
         $mail->Subject = $subject;
         $mail->Body = $body;
