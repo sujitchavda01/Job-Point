@@ -84,9 +84,9 @@ try {
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-        $mail->Username = "sujitchavda01@gmail.com"; // Your email
-        $mail->Password = "gwkszfmuwzstrwxu"; // Your email password
-        $mail->setFrom("sujitchavda01@gmail.com", "Job Point"); // Sender information
+        $mail->Username = " "; // Your email
+        $mail->Password = ""; // Your email password
+        $mail->setFrom(" ", "Job Point"); // Sender information
 
         // Send email to each seeker
         foreach ($seekerEmails as $email) {
