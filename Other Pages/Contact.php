@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = $_POST['message'];
 
     // Email configuration
-    $to = 'sujitchavda01@gmail.com';
+    $to = '';
     $subject = 'Contact Form Submission';
     $body = "<p><strong>Email:</strong> $email</p><p><strong>Message:</strong></p><p>$message</p>";
 
@@ -27,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-        $mail->Username = 'sujitchavda01@gmail.com';
-        $mail->Password = 'gwkszfmuwzstrwxu';
-        $mail->setFrom('sujitchavda01@gmail.com', 'Job Point Contact Us');
+        $mail->Username = '';
+        $mail->Password = '';
+        $mail->setFrom('', 'Job Point Contact Us');
         $mail->addAddress($to);
         $mail->Subject = $subject;
         $mail->Body = $body;
